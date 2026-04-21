@@ -14,12 +14,11 @@
     :root {
       --navy:#0D2847; --navy-dk:#071B35; --navy-lt:#EEF4FF;
       --gold:#B07C22; --gold-lt:#FBF5E6;
-      --sakura:#E8A4B2;
+      --sakura:#E8A4B2; --sakura-lt:#FDF2F5;
       --cream:#FAF8F4; --ink:#0A1A2F; --ink-2:#233D5C; --ink-3:#5A7590; --ink-4:#90A8BE;
       --border:#D8E4F0; --border-lt:#EBF2FA; --white:#FFFFFF;
       --shadow:0 2px 12px rgba(13,40,71,.10),0 1px 3px rgba(13,40,71,.06);
       --radius:18px; --radius-md:12px; --radius-sm:8px;
-      --header-h:108px;
       --font-serif:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
       --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     }
@@ -31,70 +30,94 @@
     input{font-family:var(--font-sans)}
 
 ```
-#app-header{position:fixed;top:0;left:0;right:0;z-index:200;background:linear-gradient(160deg,#0F3160 0%,#0D2847 60%,#071B35 100%);border-bottom:1px solid rgba(255,255,255,.07);padding-top:env(safe-area-inset-top,0px)}
-.header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px}
+/* ── HEADER ── fixed, full-width navy bar */
+#app-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:#0D2847;
+  background:linear-gradient(160deg,#0F3160 0%,#0D2847 55%,#071B35 100%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.header-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px 10px;
+}
+/* LEFT: brand */
 .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.brand-sakura{font-size:20px;line-height:1;flex-shrink:0}
-.brand-title{font-family:var(--font-serif);font-size:18px;font-weight:300;letter-spacing:.6px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.brand-sub{font-size:10px;color:rgba(255,255,255,.42);letter-spacing:.8px;text-transform:uppercase;margin-top:2px}
-.header-right{text-align:right;flex-shrink:0}
-.header-right-inner{display:flex;align-items:center;gap:12px}
-#jst-clock{font-family:'SF Mono','Menlo','Monaco','Courier New',monospace;font-size:17px;font-weight:300;letter-spacing:1.5px;color:#fff}
-#trip-day-label{font-size:10px;color:rgba(255,255,255,.40);letter-spacing:.5px;margin-top:2px}
-#hc-logo{height:44px;width:auto;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))}
+.brand-sakura{font-size:22px;line-height:1;flex-shrink:0}
+.brand-words{min-width:0}
+.brand-title{font-family:var(--font-serif);font-size:19px;font-weight:300;letter-spacing:.6px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-sub{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
+/* RIGHT: clock + logo */
+.header-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.clock-block{text-align:right}
+#jst-clock{font-family:'SF Mono','Menlo','Monaco','Courier New',monospace;font-size:17px;font-weight:300;letter-spacing:1.5px;color:#fff;display:block}
+#trip-day-label{font-size:10px;color:rgba(255,255,255,.42);letter-spacing:.5px;margin-top:1px;display:block}
+/* Logo: explicit 44px height so layout doesn't shift on image load */
+#hc-logo{display:block;height:44px;width:auto;filter:drop-shadow(0 1px 4px rgba(0,0,0,.4))}
+
+/* ── TAB NAV ── */
 .tab-nav{display:flex;border-top:1px solid rgba(255,255,255,.07)}
-.tab-btn{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.42);font-size:11px;font-weight:500;letter-spacing:.6px;text-transform:uppercase;padding:9px 4px 7px;transition:color .18s,border-color .18s;cursor:pointer}
+.tab-btn{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.42);font-size:11px;font-weight:500;letter-spacing:.6px;text-transform:uppercase;padding:9px 4px 7px;transition:color .18s,border-color .18s;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .tab-btn.active{color:var(--sakura);border-bottom-color:var(--sakura)}
 
-#main-content{padding-top:var(--header-h)}
+/* ── MAIN: padding-top set by JS ── */
+#main-content{padding-top:108px}
 .tab-panel{display:none;padding:14px 14px 60px;animation:panelFade .22s ease both}
 .tab-panel.active{display:block}
 @keyframes panelFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-.trip-banner{background:linear-gradient(135deg,var(--navy) 0%,#0A2040 60%,#04111F 100%);border-radius:var(--radius);padding:22px 20px 20px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+/* ── BANNER ── */
+.trip-banner{background:linear-gradient(135deg,#0D2847 0%,#0A2040 55%,#04111F 100%);border-radius:var(--radius);padding:22px 20px 20px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
 .trip-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
 .trip-banner-kana{font-family:var(--font-serif);font-size:11px;font-style:italic;opacity:.55;letter-spacing:1px;margin-bottom:4px;position:relative}
 .trip-banner h2{font-family:var(--font-serif);font-size:28px;font-weight:300;letter-spacing:1px;margin-bottom:4px;position:relative}
 .trip-banner .banner-dates{font-size:13px;opacity:.72;position:relative}
 .banner-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;position:relative}
 .banner-chip{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 10px;font-size:11px}
+.banner-chip.bday{background:rgba(232,164,178,.25);border-color:rgba(232,164,178,.4)}
 
 .section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-4);padding:8px 2px 6px}
 
+/* ── DAY CARDS ── */
 .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
 @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .day-card.is-today{border-color:var(--navy);box-shadow:0 0 0 1.5px var(--navy),var(--shadow)}
-.day-card.is-past{opacity:.60}
+.day-card.is-past{opacity:.58}
+.day-card.is-bday{border-color:#E8A4B2}
 .day-header{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
 .day-num{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:var(--border-lt);color:var(--ink-3)}
 .day-card.is-today .day-num{background:var(--navy);color:#fff}
+.day-card.is-bday .day-num{background:var(--sakura);color:#fff}
 .day-header-info{flex:1;min-width:0}
 .day-name{font-size:15px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.day-sub{font-size:11px;color:var(--ink-4);margin-top:2px;display:flex;align-items:center;gap:6px}
+.day-sub{font-size:11px;color:var(--ink-4);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .day-city-badge{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:5px}
 .city-tokyo{background:#EBF3FF;color:#1A5FAA}
 .city-kyoto{background:#EEE8FF;color:#5C35B0}
 .today-pill{font-size:10px;font-weight:700;background:var(--navy);color:#fff;padding:2px 8px;border-radius:20px}
+.bday-pill{font-size:10px;font-weight:700;background:var(--sakura);color:#fff;padding:2px 8px;border-radius:20px}
 .day-chevron{color:var(--ink-4);font-size:14px;flex-shrink:0;transition:transform .25s cubic-bezier(.4,0,.2,1)}
 .day-card.open .day-chevron{transform:rotate(180deg)}
 .day-body{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1)}
 .day-card.open .day-body{max-height:4000px}
 .day-body-inner{padding:0 16px 16px}
 
-.hotel-bar{display:flex;align-items:center;gap:10px;background:#EBF4FF;border-radius:var(--radius-md);padding:10px 13px;margin-bottom:12px;border-left:3px solid #0D2847}
+.hotel-bar{display:flex;align-items:center;gap:10px;border-radius:var(--radius-md);padding:10px 13px;margin-bottom:12px;background:#EBF4FF;border-left:3px solid #0D2847}
 .hotel-bar.ky{background:#F0EAFF;border-left-color:#5C35B0}
 .hotel-bar.am{background:#E8F5E9;border-left-color:#2E7D32}
-.hotel-bar-name{font-size:12px;font-weight:600;color:#0D2847}
-.hotel-bar.ky .hotel-bar-name{color:#3B1B80}
-.hotel-bar.am .hotel-bar-name{color:#1B5E20}
-.hotel-bar-detail{font-size:11px;color:#1A3F6F;margin-top:1px}
-.hotel-bar.ky .hotel-bar-detail{color:#5C35B0}
-.hotel-bar.am .hotel-bar-detail{color:#388E3C}
-.hotel-map-link{margin-left:auto;font-size:11px;font-weight:500;display:flex;align-items:center;gap:3px;flex-shrink:0;color:#0D2847}
-.hotel-bar.ky .hotel-map-link{color:#3B1B80}
-.hotel-bar.am .hotel-map-link{color:#1B5E20}
+.hb-name{font-size:12px;font-weight:600;color:#0D2847}
+.hotel-bar.ky .hb-name{color:#3B1B80}
+.hotel-bar.am .hb-name{color:#1B5E20}
+.hb-detail{font-size:11px;color:#1A3F6F;margin-top:1px}
+.hotel-bar.ky .hb-detail{color:#5C35B0}
+.hotel-bar.am .hb-detail{color:#388E3C}
+.hb-link{margin-left:auto;font-size:11px;font-weight:500;flex-shrink:0;color:#0D2847}
+.hotel-bar.ky .hb-link{color:#3B1B80}
+.hotel-bar.am .hb-link{color:#1B5E20}
 
 .day-note-bar{background:var(--navy-lt);border-radius:var(--radius-md);border-left:3px solid #4A80C0;padding:10px 13px;font-size:12px;color:var(--ink-2);line-height:1.55;margin-bottom:12px}
+.day-note-bar.bday-note{background:#FDF2F5;border-left-color:var(--sakura)}
+
 .weather-widget{display:flex;align-items:center;gap:10px;background:var(--gold-lt);border-radius:var(--radius-md);border:1px solid rgba(176,124,34,.15);padding:10px 13px;margin-bottom:14px}
 .wx-icon{font-size:26px}
 .wx-info{flex:1}
@@ -104,6 +127,7 @@
 .wx-loading{font-size:12px;color:var(--ink-4);animation:pulse 1.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
+/* ── TIMELINE ── */
 .timeline{position:relative;padding-left:75px}
 .stop-item{position:relative;margin-bottom:14px}
 .stop-item::after{content:'';position:absolute;left:-16px;top:29px;bottom:-14px;width:2px;background:var(--border);z-index:1}
@@ -112,13 +136,15 @@
 .stop-dot{position:absolute;left:-25px;top:9px;width:18px;height:18px;border-radius:50%;border:2.5px solid #ccc;background:#fff;z-index:2}
 .stop-dot.t-restaurant{border-color:#8B1A1A;background:#F8EDED}
 .stop-dot.t-activity{border-color:#6650CC;background:#EEE8FF}
-.stop-dot.t-transport{border-color:var(--navy);background:var(--navy-lt)}
+.stop-dot.t-transport{border-color:#0D2847;background:#EEF4FF}
 .stop-dot.t-hotel{border-color:#2E7D32;background:#E8F5E9}
 .stop-dot.t-flight{border-color:#0277BD;background:#E1F5FE}
 .stop-dot.t-market{border-color:#E65100;background:#FBE9E7}
 .stop-dot.t-shopping{border-color:#00695C;background:#E0F2F1}
 .stop-dot.t-bar{border-color:#B07C22;background:#FBF5E6}
+.stop-dot.t-bday{border-color:#C2185B;background:#FCE4EC}
 .stop-card{background:var(--cream);border-radius:var(--radius-md);border:1px solid var(--border-lt);padding:11px 13px}
+.stop-card.bday-card{background:#FFF0F5;border-color:rgba(194,24,91,.18)}
 .stop-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .stop-title-wrap{flex:1;min-width:0}
 .stop-icon{font-size:13px;margin-right:5px}
@@ -126,13 +152,16 @@
 .stop-subtitle{font-size:11px;color:var(--ink-3);margin-top:2px}
 .stop-badge{font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:5px;flex-shrink:0;background:var(--gold-lt);color:var(--gold);border:1px solid rgba(176,124,34,.22);white-space:nowrap}
 .stop-badge.ok{background:#EBF6EE;color:#2E7D32;border-color:rgba(46,125,50,.22)}
+.stop-badge.sb{background:var(--navy-lt);color:var(--navy);border-color:rgba(13,40,71,.22)}
+.stop-badge.bd{background:#FCE4EC;color:#C2185B;border-color:rgba(194,24,91,.22)}
 .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
 .stop-alert{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 10px;background:#FFFBEB;border-radius:var(--radius-sm);border-left:3px solid #F59E0B;font-size:11px;color:#92400E;font-weight:500;line-height:1.4}
 .map-actions{display:flex;gap:5px;margin-top:10px}
-.map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;min-height:34px;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:center}
+.map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;min-height:34px;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .map-btn:active{transform:scale(.96)}
 .map-btn.mp{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:600}
 
+/* ── UTILITIES ── */
 .util-card{background:var(--white);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid var(--border-lt);margin-bottom:12px}
 .util-card-title{font-family:var(--font-serif);font-size:18px;font-weight:400;color:var(--ink);margin-bottom:14px;letter-spacing:.3px}
 .fx-row{display:flex;gap:8px;align-items:flex-end}
@@ -156,6 +185,7 @@
 .diet-yes{background:#EBF6EE;color:#2E7D32}
 .diet-no{background:#FFEBEE;color:#B71C1C}
 
+/* ── EMERGENCY ── */
 .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
 .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
 .emergency-banner p{font-size:12px;opacity:.75}
@@ -167,7 +197,7 @@
 .ci-r{background:#FFEBEE}.ci-g{background:#E8F5E9}.ci-b{background:#E3F2FD}.ci-p{background:#EDE7F6}.ci-n{background:var(--navy-lt)}
 .contact-label{font-size:13px;font-weight:600;color:var(--ink)}
 .contact-sub{font-size:11.5px;color:var(--ink-3);margin-top:1px}
-.call-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;white-space:nowrap;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.call-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;white-space:nowrap;border:none;cursor:pointer}
 .cn{background:var(--navy);color:#fff}
 .cr{background:#C62828;color:#fff}
 .cg{background:#2E7D32;color:#fff}
@@ -178,12 +208,11 @@
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(min-width:700px){
-  :root{--header-h:80px}
   .header-top{padding:16px 40px 12px}
-  .tab-nav{padding:0 40px}
-  .tab-btn{font-size:13px;padding:10px 20px;flex:none}
   .brand-title{font-size:22px}
   #jst-clock{font-size:20px}
+  .tab-nav{padding:0 40px}
+  .tab-btn{font-size:13px;padding:10px 20px;flex:none}
   .tab-panel{max-width:900px;margin-left:auto;margin-right:auto;padding:24px 32px 60px}
 }
 @media(prefers-color-scheme:dark){
@@ -199,19 +228,17 @@
   <div class="header-top">
     <div class="brand">
       <div class="brand-sakura">🗾</div>
-      <div>
+      <div class="brand-words">
         <div class="brand-title">Tokyo &amp; Kyoto</div>
         <div class="brand-sub">Isaac &amp; Emmanuelle · Happy Camper</div>
       </div>
     </div>
     <div class="header-right">
-      <div class="header-right-inner">
-        <div>
-          <div id="jst-clock">--:--</div>
-          <div id="trip-day-label">Japan Standard Time</div>
-        </div>
-        <img id="hc-logo" alt="Happy Camper">
+      <div class="clock-block">
+        <span id="jst-clock">--:--</span>
+        <span id="trip-day-label">Japan Standard Time</span>
       </div>
+      <img id="hc-logo" alt="Happy Camper" height="44">
     </div>
   </div>
   <nav class="tab-nav">
@@ -229,588 +256,545 @@
 <div id="toast"></div>
 
 <script>
-(function() {
-  'use strict';
+(function(){
+'use strict';
 
-  /* ─── CONFIG ─────────────────────────────────────────────
-     FX_RATE: update with current JPY per 1 USD rate.
-     LOGO_B64: base64 PNG of the Happy Camper logo.
-  ──────────────────────────────────────────────────────── */
-  var FX_RATE = 152.67;
-  var LOGO_B64 = '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';
+/* ── CONFIG ───────────────────────────────────────────────────
+   FX_RATE: JPY per 1 USD — update as needed
+   LOGO_B64: injected below by build script
+──────────────────────────────────────────────────────────── */
+var FX_RATE = 152.67;
+var LOGO_B64 = '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';
 
-  /* inject logo */
-  var logoEl = document.getElementById('hc-logo');
-  if (logoEl && LOGO_B64) logoEl.src = 'data:image/png;base64,' + LOGO_B64;
+/* Inject logo — height already set in HTML so layout is stable */
+(function(){
+  var el = document.getElementById('hc-logo');
+  if (el && LOGO_B64) el.src = 'data:image/png;base64,' + LOGO_B64;
+}());
 
-  /* ─── TRIP DATA ───────────────────────────────────────── */
-  var TRIP = {
-    startDate: '2026-05-01',
-    endDate:   '2026-05-09',
-    dietary: {
-      Isaac:      { yes: ['Tuna','Salmon','Yellowtail','White fish'], no: ['Pork','Shellfish'] },
-      Emmanuelle: { yes: ['Tuna','Salmon','White fish','Uni'],        no: ['Eel','Mackerel'] }
+/* ── HEADER HEIGHT ────────────────────────────────────────────
+   Measure the actual rendered header and apply padding-top.
+   Re-run on resize to handle orientation changes.
+──────────────────────────────────────────────────────────── */
+function fitHeader() {
+  var h = document.getElementById('app-header').offsetHeight;
+  document.getElementById('main-content').style.paddingTop = (h + 4) + 'px';
+}
+window.addEventListener('resize', fitHeader);
+/* Run once now, again after fonts settle */
+fitHeader();
+setTimeout(fitHeader, 400);
+
+/* ── TRIP DATA ────────────────────────────────────────────────
+   Canvas: Isaac Ashkenazy & Emmanuelle Zaoui
+   May 2 – 10, 2026 · 8 nights · 16 meals
+──────────────────────────────────────────────────────────── */
+var TRIP = {
+  startDate: '2026-05-02',
+  endDate:   '2026-05-10',
+  dietary: {
+    Isaac:      { yes: ['Tuna','Salmon','Yellowtail','White fish'], no: ['Pork','Shellfish'] },
+    Emmanuelle: { yes: ['Tuna','Salmon','White fish','Uni'],        no: ['Eel','Mackerel'] }
+  },
+  hotels: [
+    { name:'Janu Tokyo',    nights:'Sat 2 – Tue 5 May (4 nights)', q:'Janu Tokyo Azabudai Hills' },
+    { name:'Capella Kyoto', nights:'Wed 6 – Thu 7 May (2 nights)', q:'Capella Kyoto' },
+    { name:'Aman Tokyo',    nights:'Fri 8 – Sat 9 May (2 nights)', q:'Aman Tokyo Otemachi' }
+  ],
+  days: [
+    /* ── D1 Sat 2 May ── */
+    {
+      date:'2026-05-02', dayNum:1, weekday:'Saturday 2 May', city:'Tokyo',
+      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
+      notes:'Arrival day. Pick-up handled by the hotel directly. Settle in — dinner tonight is the only commitment.',
+      stops:[
+        { time:'', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo',
+          type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
+          notes:'Janu Tokyo manages the transfer directly from the airport. No driver sign to look for — hotel concierge will communicate details. Withdraw yen at the 7-Eleven ATM on arrival.' },
+        { time:'19:30', title:'Nakano', sub:'Welcome dinner · Sushi counter',
+          type:'restaurant', badge:'Sushi · Confirmed', ok:true,
+          loc:'Sushi Nakano', addr:'Tokyo', q:'Sushi Nakano Tokyo',
+          notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
+          alert:'No perfume or fragrance at the counter' }
+      ]
     },
-    hotels: [
-      { name:'Janu Tokyo',    nights:'Fri 1 – Mon 4 May', q:'Janu Tokyo Azabudai Hills' },
-      { name:'Capella Kyoto', nights:'Tue 5 – Wed 6 May', q:'Capella Kyoto' },
-      { name:'Aman Tokyo',    nights:'Thu 7 – Fri 8 May', q:'Aman Tokyo Otemachi' }
-    ],
-    days: [
-      {
-        date:'2026-05-01', dayNum:1, weekday:'Friday 1 May', city:'Tokyo',
-        hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills',
-        notes:'Arrival day. Settle in — dinner is the only commitment tonight. JST is UTC+9.',
-        stops:[
-          { time:'~17:00', title:'Arrival — Tokyo', sub:'Airport transfer to Janu Tokyo',
-            type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo',
-            q:'Haneda Airport Tokyo',
-            notes:'Happy Camper drivers waiting at customs exit. Transfer approx 30-45 min. Withdraw yen at the 7-Eleven ATM on arrival — carry 50,000-70,000 yen per person.' },
-          { time:'19:30', title:'Nakano', sub:'Welcome dinner · Intimate sushi counter',
-            type:'restaurant', badge:'Sushi · Confirmed', badgeOk:true,
-            loc:'Sushi Nakano', addr:'Tokyo', q:'Sushi Nakano Tokyo',
-            notes:'A refined sushi counter for the first evening. Dietary notes confirmed with the chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
-            alert:'No perfume or fragrance at the counter' }
-        ]
-      },
-      {
-        date:'2026-05-02', dayNum:2, weekday:'Saturday 2 May', city:'Tokyo',
-        hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills',
-        notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
-        stops:[
-          { time:'12:30', title:'Pizza Seirinkan', sub:'Lunch · Legendary wood-fired pizza',
-            type:'restaurant', badge:'Walk-in · Institution',
-            loc:'Seirinkan', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
-            notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms.' },
-          { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro canal · Daikanyama · Ebisu',
-            type:'activity', loc:'Nakameguro, Tokyo', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
-            notes:'The Meguro River walk toward Daikanyama is one of Tokyo\'s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
-          { time:'19:30', title:'Tempura Tenko', sub:'Dinner · Counter tempura',
-            type:'restaurant', badge:'Tempura',
-            loc:'Tempura Tenko', addr:'Tokyo', q:'Tempura Tenko Tokyo',
-            notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
-            alert:'No fragrance at the counter' }
-        ]
-      },
-      {
-        date:'2026-05-03', dayNum:3, weekday:'Sunday 3 May', city:'Tokyo',
-        hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills',
-        notes:'Golden Week begins (3-6 May). Parks and popular spots will be busy; restaurants and private experiences remain unaffected.',
-        stops:[
-          { time:'12:00', title:'Tiffany Blue Box Cafe', sub:'Lunch · Omotesando',
-            type:'restaurant', badge:'Self Booked',
-            loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
-            notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
-            alert:'Self-booked — confirm your reservation directly with Tiffany' },
-          { time:'~13:30', title:'Omotesando and Aoyama', sub:'Shopping · Architecture · Afternoon',
-            type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
-            notes:'Some of Tokyo\'s finest architecture and boutiques along Omotesando-dori.' },
-          { time:'19:30', title:'J-Free', sub:'Dinner · Contemporary fusion',
-            type:'restaurant', badge:'Confirmed', badgeOk:true,
-            loc:'J-Free Tokyo', addr:'Tokyo', q:'J-Free restaurant Tokyo',
-            notes:'A contemporary restaurant with a relaxed atmosphere.' }
-        ]
-      },
-      {
-        date:'2026-05-04', dayNum:4, weekday:'Monday 4 May', city:'Tokyo',
-        hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills',
-        notes:'Golden Week. The Joni Waka VIP Tour is today — private access to Tokyo\'s most exclusive fashion world.',
-        stops:[
-          { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Guide-led',
-            type:'activity', badge:'VIP · Confirmed', badgeOk:true,
-            loc:'Tokyo (meeting point confirmed)', addr:'Tokyo', q:'Omotesando Tokyo fashion',
-            notes:'A curated private tour through Tokyo\'s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
-            alert:'Carry cash throughout the day' },
-          { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme',
-            type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
-            notes:'Lunch venue selected within the tour itinerary.' },
-          { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-            type:'restaurant', badge:'Confirmed', badgeOk:true,
-            loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo',
-            notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
-        ]
-      },
-      {
-        date:'2026-05-05', dayNum:5, weekday:'Tuesday 5 May', city:'Kyoto',
-        hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto',
-        notes:'Travel day to Kyoto. Green Car Shinkansen — right-hand seats for Fuji views. Ryan meets you at Kyoto Station.',
-        stops:[
-          { time:'08:00', title:'Shinkansen to Kyoto', sub:'Tokyo Station to Kyoto · Green Car',
-            type:'transport', badge:'Green Car',
-            loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
-            notes:'Nozomi service — arrive Kyoto at approx 10:15. Right-hand seats (C and D) for views of Mount Fuji. Ryan waiting at the platform exit.' },
-          { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district',
-            type:'hotel', loc:'Capella Kyoto', addr:'Sanjo Kuromon, Nakagyo Ward, Kyoto', q:'Capella Kyoto',
-            notes:'A superlative address in the heart of Kyoto. Nijo Castle, the Kamo River, and Gion all within easy walking distance.' },
-          { time:'~13:00', title:'Nishiki Market', sub:'Lunch · Kyoto covered food market',
-            type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'Nishiki Market Kyoto',
-            notes:'Five blocks of Kyoto street food: pickles, tofu, wagyu skewers, grilled seafood. Ten minutes from Capella on foot.' },
-          { time:'~14:30', title:'Private Tour with Ryan', sub:'Afternoon · Tailored to interests',
-            type:'activity', badge:'Private Guide: Ryan',
-            loc:'Kyoto', addr:'Kyoto', q:'Fushimi Inari Taisha Kyoto',
-            notes:'Ryan — born and raised in Kyoto, speaks excellent English. Options: Fushimi Inari, Arashiyama bamboo grove, Gion machiya streets, or the Philosopher\'s Walk.' },
-          { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-            type:'restaurant', badge:'Confirmed', badgeOk:true,
-            loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
-            notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
-        ]
-      },
-      {
-        date:'2026-05-06', dayNum:6, weekday:'Wednesday 6 May', city:'Kyoto',
-        hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto',
-        notes:'Final full day in Kyoto. OKA dinner at 19:00 is the centrepiece. Bar Centefolia strongly recommended after.',
-        stops:[
-          { time:'09:00', title:'Full-day Tour with Ryan', sub:'Kyoto or Nara · Tailored',
-            type:'activity', badge:'Private Guide: Ryan',
-            loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
-            notes:'Option A — Kyoto: Kinkaku-ji, Philosopher\'s Walk, Nanzen-ji, Gion at dusk. Option B — Nara (45 min): Todai-ji temple with Japan\'s largest bronze Buddha, freely roaming deer.' },
-          { time:'~13:00', title:'Tour Lunch', sub:'Ryan\'s selection',
-            type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
-            notes:'Ryan selects a neighbourhood restaurant suited to the morning location.' },
-          { time:'19:00', title:'OKA', sub:'Dinner · 2 guests · Aged wagyu',
-            type:'restaurant', badge:'Confirmed · Aged Wagyu', badgeOk:true,
-            loc:'Oka Kyoto', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
-            notes:'One of the top wagyu restaurants in Kyoto. The chef\'s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners.',
-            alert:'No fragrance · 2 guests confirmed at 19:00' },
-          { time:'~21:00', title:'Bar Centefolia', sub:'After dinner · One of Kyoto\'s finest bars',
-            type:'bar', loc:'Bar Centefolia', addr:'Kyoto', q:'Bar Centefolia Kyoto cocktail',
-            notes:'One of Kyoto\'s most celebrated cocktail bars — intimate, world-class. The perfect close to the Kyoto chapter.' }
-        ]
-      },
-      {
-        date:'2026-05-07', dayNum:7, weekday:'Thursday 7 May', city:'Tokyo',
-        hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi',
-        notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
-        stops:[
-          { time:'08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car',
-            type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
-            notes:'Nozomi service — arrive Tokyo approx 10:15.' },
-          { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi',
-            type:'hotel', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
-            notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower with extraordinary views over the Imperial Palace Gardens.' },
-          { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
-            type:'restaurant', badge:'Walk-in',
-            loc:'Menya Shichisai', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
-            notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
-          { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-            type:'restaurant', badge:'Confirmed', badgeOk:true,
-            loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
-            notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
-        ]
-      },
-      {
-        date:'2026-05-08', dayNum:8, weekday:'Friday 8 May', city:'Tokyo',
-        hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi',
-        notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes for Toyosu.',
-        stops:[
-          { time:'06:30', title:'Toyosu Fish Market', sub:'Dawn expedition',
-            type:'market', badge:'Confirmed', badgeOk:true,
-            loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
-            notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers. The market is at its most alive between 06:00 and 08:00.',
-            alert:'Wear comfortable closed shoes · Follow your guide at all times' },
-          { time:'~09:30', title:'Tsukiji Outer Market', sub:'Breakfast and street food',
-            type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'Tsukiji Outer Market Tokyo',
-            notes:'A short drive from Toyosu. Tamagoyaki, fresh sushi, grilled seafood. An excellent post-market breakfast.' },
-          { time:'~11:00', title:'Free Morning', sub:'Ginza · Hibiya · Rest at Aman',
-            type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
-            notes:'Ginza and Hibiya Park are adjacent to Aman Tokyo. The Aman Spa is worth booking in advance.' },
-          { time:'19:30', title:'Dinner', sub:'Final Tokyo evening · Happy Camper confirmed',
-            type:'restaurant', badge:'Confirmed', badgeOk:true,
-            loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Ginza',
-            notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
-        ]
-      },
-      {
-        date:'2026-05-09', dayNum:9, weekday:'Saturday 9 May', city:'Tokyo',
-        hotel:null, hs:'', hq:null,
-        notes:'Departure day. Luggage can be stored at Aman until departure.',
-        stops:[
-          { time:'~11:00', title:'Kukuku', sub:'Farewell lunch',
-            type:'restaurant', loc:'Kukuku Tokyo', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
-            notes:'A relaxed farewell lunch before heading to the airport.' },
-          { time:'~14:00', title:'Departure Transfer', sub:'Aman Tokyo to Airport',
-            type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
-            notes:'Private car to airport. Allow 60-90 min to Haneda (HND) or Narita (NRT). Confirm exact time with Happy Camper.' }
-        ]
-      }
-    ]
-  };
-
-  /* ─── WEATHER ───────────────────────────────────────── */
-  var COORDS = {
-    Tokyo: { lat:35.6762, lon:139.6503 },
-    Kyoto: { lat:35.0116, lon:135.7681 }
-  };
-  function wmo(c) {
-    if (c === 0)          return {i:'☀️', d:'Clear sky'};
-    if (c <= 2)           return {i:'⛅', d:'Partly cloudy'};
-    if (c === 3)          return {i:'☁️', d:'Overcast'};
-    if (c >= 45 && c<=48) return {i:'🌫️', d:'Foggy'};
-    if (c >= 51 && c<=67) return {i:'🌧️', d:'Rain'};
-    if (c >= 80 && c<=82) return {i:'🌦️', d:'Showers'};
-    if (c >= 95)          return {i:'⛈️', d:'Thunderstorm'};
-    return {i:'🌤️', d:'Mixed'};
-  }
-  function loadWeather() {
-    var cache = {};
-    var cities = Object.keys(COORDS);
-    var done = 0;
-    cities.forEach(function(city) {
-      var c = COORDS[city];
-      var url = 'https://api.open-meteo.com/v1/forecast'
-        + '?latitude=' + c.lat + '&longitude=' + c.lon
-        + '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode'
-        + '&timezone=Asia%2FTokyo&forecast_days=16';
-      fetch(url)
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          data.daily.time.forEach(function(date, i) {
-            cache[city + '-' + date] = {
-              max:  Math.round(data.daily.temperature_2m_max[i]),
-              min:  Math.round(data.daily.temperature_2m_min[i]),
-              rain: data.daily.precipitation_probability_max[i] || 0,
-              code: data.daily.weathercode[i]
-            };
-          });
-        })
-        .catch(function() {})
-        .then(function() {
-          done++;
-          if (done === cities.length) applyWeather(cache);
-        });
-    });
-  }
-  function applyWeather(cache) {
-    TRIP.days.forEach(function(day) {
-      var el = document.getElementById('wx-' + day.date);
-      if (!el) return;
-      var w = cache[day.city + '-' + day.date];
-      if (!w) { setWxFallback(el, day.city); return; }
-      var e = wmo(w.code);
-      el.innerHTML = '<span class="wx-icon">' + e.i + '</span>'
-        + '<div class="wx-info"><div class="wx-temp">' + w.max + '° / ' + w.min + '°C · ' + e.d + '</div>'
-        + '<div class="wx-desc">' + day.city + ' · ' + day.weekday.split(' ')[0] + '</div></div>'
-        + '<div class="wx-rain">💧 ' + w.rain + '%</div>';
-    });
-  }
-  function setWxFallback(el, city) {
-    el.innerHTML = '<span class="wx-icon">🌿</span>'
-      + '<div class="wx-info"><div class="wx-temp" style="font-size:13px">May in Japan · ~18-24°C</div>'
-      + '<div class="wx-desc">' + city + ' · Weather loads with internet connection</div></div>';
-  }
-
-  /* ─── MAPS ──────────────────────────────────────────── */
-  function gm(q)  { return 'https://maps.google.com/?q=' + encodeURIComponent(q); }
-  function nav(q) { return 'https://maps.google.com/maps?daddr=' + encodeURIComponent(q) + '&dirflg=d'; }
-
-  /* ─── TOAST ─────────────────────────────────────────── */
-  var toastTm;
-  function toast(msg) {
-    var el = document.getElementById('toast');
-    el.textContent = msg;
-    el.classList.add('show');
-    clearTimeout(toastTm);
-    toastTm = setTimeout(function() { el.classList.remove('show'); }, 2200);
-  }
-  /* expose globally for onclick */
-  window.copyAddr = function(idx, si) {
-    var stop = TRIP.days[idx].stops[si];
-    var text = (stop.addr && stop.addr !== 'Tokyo' && stop.addr !== 'Kyoto') ? stop.addr : stop.loc;
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(function() { toast('Address copied'); });
-    } else {
-      var ta = document.createElement('textarea');
-      ta.value = text; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      document.execCommand('copy'); document.body.removeChild(ta);
-      toast('Address copied');
+    /* ── D2 Sun 3 May ── */
+    {
+      date:'2026-05-03', dayNum:2, weekday:'Sunday 3 May', city:'Tokyo',
+      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
+      notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
+      stops:[
+        { time:'12:30', title:'Pizza Seirinkan', sub:'Lunch · Legendary wood-fired pizza',
+          type:'restaurant', badge:'Walk-in',
+          loc:'Seirinkan', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
+          notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
+        { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
+          type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
+          notes:'The Meguro River walk toward Daikanyama is one of Tokyo\'s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
+        { time:'19:30', title:'Tempura Tenko', sub:'Dinner · Counter tempura',
+          type:'restaurant', badge:'Tempura · Confirmed', ok:true,
+          loc:'Tempura Tenko', addr:'Tokyo', q:'Tempura Tenko Tokyo',
+          notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
+          alert:'No fragrance at the counter' }
+      ]
+    },
+    /* ── D3 Mon 4 May ── */
+    {
+      date:'2026-05-04', dayNum:3, weekday:'Monday 4 May', city:'Tokyo',
+      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
+      notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
+      stops:[
+        { time:'12:00', title:'Tiffany Blue Box Cafe', sub:'Lunch · Omotesando · Self-booked',
+          type:'restaurant', badge:'Self-booked', sb:true,
+          loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
+          notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
+          alert:'Self-booked — confirm your reservation directly with Tiffany' },
+        { time:'~13:30', title:'Omotesando & Aoyama', sub:'Shopping · Architecture',
+          type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
+          notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
+        { time:'19:30', title:'J-Free', sub:'Dinner · Contemporary fusion',
+          type:'restaurant', badge:'Confirmed', ok:true,
+          loc:'J-Free Tokyo', addr:'Tokyo', q:'J-Free restaurant Tokyo',
+          notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
+      ]
+    },
+    /* ── D4 Tue 5 May — BIRTHDAY ── */
+    {
+      date:'2026-05-05', dayNum:4, weekday:'Tuesday 5 May', city:'Tokyo',
+      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:true,
+      notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centefolia to close the evening.',
+      stops:[
+        { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Self-booked',
+          type:'activity', badge:'VIP · Self-booked', sb:true,
+          loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Omotesando Tokyo fashion district',
+          notes:'A curated private tour through Tokyo\'s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
+          alert:'Carry cash throughout the day · Confirm meeting point with Joni Waka in advance' },
+        { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme',
+          type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
+          notes:'Lunch venue selected and arranged within the tour.' },
+        { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner',
+          type:'bday', badge:'Birthday · Confirmed', bd:true,
+          loc:'Tokyo', addr:'Tokyo', q:'special dinner Tokyo',
+          notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
+        { time:'~21:30', title:'Bar Centefolia', sub:'Birthday nightcap · One of Kyoto\'s finest bars',
+          type:'bar', loc:'Bar Centefolia', addr:'Tokyo', q:'Bar Centefolia Tokyo cocktail',
+          notes:'A perfect close to the birthday evening.' }
+      ]
+    },
+    /* ── D5 Wed 6 May — TO KYOTO ── */
+    {
+      date:'2026-05-06', dayNum:5, weekday:'Wednesday 6 May', city:'Kyoto',
+      hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
+      notes:'Travel day. Shinkansen to Kyoto this morning — right-hand seats for Mount Fuji views. Settling into Capella Kyoto.',
+      stops:[
+        { time:'08:00', title:'Shinkansen to Kyoto', sub:'Tokyo Station to Kyoto · Green Car',
+          type:'transport', badge:'Green Car',
+          loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
+          notes:'Nozomi service — arrive Kyoto at approximately 10:15. Right-hand seats (C and D) for views of Mount Fuji on a clear morning.' },
+        { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district',
+          type:'hotel', loc:'Capella Kyoto', addr:'Sanjo Kuromon, Nakagyo Ward, Kyoto', q:'Capella Kyoto',
+          notes:'A superlative address in the heart of Kyoto. Nijo Castle, the Kamo River, and Gion all within easy walking distance.' },
+        { time:'~13:00', title:'Nishiki Market', sub:'Lunch · Kyoto\'s covered food market',
+          type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'Nishiki Market Kyoto',
+          notes:'Five blocks of Kyoto street food: pickles, tofu, wagyu skewers, grilled seafood. Ten minutes from Capella on foot.' },
+        { time:'~15:00', title:'Afternoon in Kyoto', sub:'Gion · Philosopher\'s Walk · Kamo River',
+          type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
+          notes:'Explore Gion\'s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher\'s Walk follows a canal lined with cherry trees.' },
+        { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
+          type:'restaurant', badge:'Confirmed', ok:true,
+          loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
+          notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
+      ]
+    },
+    /* ── D6 Thu 7 May — OKA ── */
+    {
+      date:'2026-05-07', dayNum:6, weekday:'Thursday 7 May', city:'Kyoto',
+      hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
+      notes:'Full day with Ryan Durning — Kyoto\'s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
+      stops:[
+        { time:'09:00', title:'Full-day Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
+          type:'activity', badge:'Private Guide: Ryan Durning',
+          loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
+          notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher\'s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
+          alert:'Self-booked · Confirm meeting point with Ryan in advance' },
+        { time:'~13:00', title:'Tour Lunch', sub:'Ryan\'s selection',
+          type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
+          notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
+        { time:'19:00', title:'OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
+          type:'restaurant', badge:'Confirmed · Aged Wagyu', ok:true,
+          loc:'Oka Kyoto', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
+          notes:'One of the top wagyu restaurants in Kyoto. The chef\'s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
+          alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
+      ]
+    },
+    /* ── D7 Fri 8 May — BACK TO TOKYO ── */
+    {
+      date:'2026-05-08', dayNum:7, weekday:'Friday 8 May', city:'Tokyo',
+      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
+      notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
+      stops:[
+        { time:'~08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car',
+          type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
+          notes:'Nozomi service — arrive Tokyo approximately 10:15.' },
+        { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi',
+          type:'hotel', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
+          notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower — extraordinary views over the Imperial Palace Gardens. One of the world\'s most celebrated city hotels.' },
+        { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
+          type:'restaurant', badge:'Walk-in',
+          loc:'Menya Shichisai', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
+          notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
+        { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
+          type:'restaurant', badge:'Confirmed', ok:true,
+          loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
+          notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
+      ]
+    },
+    /* ── D8 Sat 9 May — FISH MARKET ── */
+    {
+      date:'2026-05-09', dayNum:8, weekday:'Saturday 9 May', city:'Tokyo',
+      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
+      notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
+      stops:[
+        { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World\'s largest fish market',
+          type:'market', badge:'Confirmed', ok:true,
+          loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
+          notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan\'s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
+          alert:'Comfortable closed shoes required · Follow your guide at all times' },
+        { time:'~09:30', title:'Tsukiji Outer Market', sub:'Breakfast and street food',
+          type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'Tsukiji Outer Market Tokyo',
+          notes:'A short drive from Toyosu. Tamagoyaki, fresh sushi, grilled seafood. An excellent post-market breakfast stop.' },
+        { time:'~11:00', title:'Free Morning', sub:'Ginza · Hibiya · Rest at Aman',
+          type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
+          notes:'Ginza and Hibiya Park are adjacent to Aman Tokyo. The Aman Spa is worth booking in advance for this afternoon.' },
+        { time:'19:30', title:'Dinner', sub:'Final Tokyo evening · Happy Camper confirmed',
+          type:'restaurant', badge:'Confirmed', ok:true,
+          loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Ginza',
+          notes:'Confirmed by Happy Camper. A fitting final evening. Exact venue confirmed prior to travel.' }
+      ]
+    },
+    /* ── D9 Sun 10 May — DEPARTURE ── */
+    {
+      date:'2026-05-10', dayNum:9, weekday:'Sunday 10 May', city:'Tokyo',
+      hotel:null, hs:'', hq:null, bday:false,
+      notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
+      stops:[
+        { time:'~11:00', title:'Kukuku', sub:'Farewell lunch',
+          type:'restaurant', loc:'Kukuku Tokyo', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
+          notes:'A relaxed final lunch before heading to the airport.' },
+        { time:'~14:00', title:'Departure Transfer', sub:'Aman Tokyo to Airport',
+          type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
+          notes:'Private car to airport. Allow 60-90 min to Haneda (HND) or Narita (NRT) depending on traffic. Confirm exact time with Happy Camper.' }
+      ]
     }
-  };
+  ]
+};
 
-  /* ─── CLOCK ─────────────────────────────────────────── */
-  function jst()    { return new Date(Date.now() + 9 * 3600000); }
-  function isoToday() { return jst().toISOString().slice(0, 10); }
-  function tickClock() {
-    var d = jst();
-    var h = String(d.getUTCHours()).padStart(2, '0');
-    var m = String(d.getUTCMinutes()).padStart(2, '0');
-    document.getElementById('jst-clock').textContent = h + ':' + m;
-    var today = d.toISOString().slice(0, 10);
-    var found = null;
-    for (var i = 0; i < TRIP.days.length; i++) {
-      if (TRIP.days[i].date === today) { found = TRIP.days[i]; break; }
-    }
-    var lbl = document.getElementById('trip-day-label');
-    if (found) {
-      lbl.textContent = 'Day ' + found.dayNum + ' of 9 · Japan';
-    } else if (today < TRIP.startDate) {
-      lbl.textContent = 'Trip begins 1 May 2026';
-    } else if (today > TRIP.endDate) {
-      lbl.textContent = 'Trip complete · Sayonara!';
-    } else {
-      lbl.textContent = 'Japan Standard Time';
-    }
-  }
-
-  /* ─── TABS ──────────────────────────────────────────── */
-  document.querySelector('.tab-nav').addEventListener('click', function(e) {
-    var btn = e.target.closest('.tab-btn');
-    if (!btn) return;
-    var name = btn.getAttribute('data-tab');
-    document.querySelectorAll('.tab-btn').forEach(function(b) {
-      b.classList.toggle('active', b.getAttribute('data-tab') === name);
-    });
-    document.querySelectorAll('.tab-panel').forEach(function(p) {
-      p.classList.toggle('active', p.id === 'tab-' + name);
+/* ── WEATHER ────────────────────────────────────────────────── */
+var COORDS = { Tokyo:{lat:35.6762,lon:139.6503}, Kyoto:{lat:35.0116,lon:135.7681} };
+function wmo(c) {
+  if (c===0)         return {i:'☀️',d:'Clear sky'};
+  if (c<=2)          return {i:'⛅',d:'Partly cloudy'};
+  if (c===3)         return {i:'☁️',d:'Overcast'};
+  if (c>=45&&c<=48)  return {i:'🌫️',d:'Foggy'};
+  if (c>=51&&c<=67)  return {i:'🌧️',d:'Rain'};
+  if (c>=80&&c<=82)  return {i:'🌦️',d:'Showers'};
+  if (c>=95)         return {i:'⛈️',d:'Thunderstorm'};
+  return {i:'🌤️',d:'Mixed'};
+}
+function loadWeather() {
+  var cities = Object.keys(COORDS), done = 0, cache = {};
+  cities.forEach(function(city) {
+    var c = COORDS[city];
+    var url = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=' + c.lat + '&longitude=' + c.lon
+      + '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode'
+      + '&timezone=Asia%2FTokyo&forecast_days=16';
+    fetch(url).then(function(r){return r.json();}).then(function(data){
+      data.daily.time.forEach(function(date,i){
+        cache[city+'-'+date]={max:Math.round(data.daily.temperature_2m_max[i]),min:Math.round(data.daily.temperature_2m_min[i]),rain:data.daily.precipitation_probability_max[i]||0,code:data.daily.weathercode[i]};
+      });
+    }).catch(function(){}).then(function(){
+      done++;
+      if (done===cities.length) applyWeather(cache);
     });
   });
+}
+function applyWeather(cache) {
+  TRIP.days.forEach(function(day){
+    var el=document.getElementById('wx-'+day.date);
+    if (!el) return;
+    var w=cache[day.city+'-'+day.date];
+    if (!w){setWxFb(el,day.city);return;}
+    var e=wmo(w.code);
+    el.innerHTML='<span class="wx-icon">'+e.i+'</span>'
+      +'<div class="wx-info"><div class="wx-temp">'+w.max+'° / '+w.min+'°C · '+e.d+'</div>'
+      +'<div class="wx-desc">'+day.city+' · '+day.weekday.split(' ')[0]+'</div></div>'
+      +'<div class="wx-rain">💧 '+w.rain+'%</div>';
+  });
+}
+function setWxFb(el,city) {
+  el.innerHTML='<span class="wx-icon">🌿</span>'
+    +'<div class="wx-info"><div class="wx-temp" style="font-size:13px">May in Japan · 18-25°C</div>'
+    +'<div class="wx-desc">'+city+' · Weather loads with internet</div></div>';
+}
 
-  /* ─── DAY TOGGLE ────────────────────────────────────── */
-  window.toggleDay = function(num) {
-    var card = document.getElementById('day-' + num);
-    if (card) card.classList.toggle('open');
-  };
+/* ── MAPS ────────────────────────────────────────────────────── */
+function gm(q){return 'https://maps.google.com/?q='+encodeURIComponent(q);}
+function nav(q){return 'https://maps.google.com/maps?daddr='+encodeURIComponent(q)+'&dirflg=d';}
 
-  /* ─── HTML ESCAPE ───────────────────────────────────── */
-  function esc(s) {
-    if (!s) return '';
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  var ICONS = {
-    flight:'✈️', transport:'🚄', hotel:'🏨', restaurant:'🍽️',
-    activity:'🎌', market:'🏪', shopping:'🛍️', bar:'🍸'
-  };
-
-  /* ─── RENDER STOP ───────────────────────────────────── */
-  function renderStop(stop, dayIdx, si) {
-    var icon = ICONS[stop.type] || '📍';
-    var badge = stop.badge
-      ? '<span class="stop-badge' + (stop.badgeOk ? ' ok' : '') + '">' + esc(stop.badge) + '</span>'
-      : '';
-    return '<div class="stop-item">'
-      + '<div class="stop-time">' + (stop.time ? stop.time.replace('~','') : '') + '</div>'
-      + '<div class="stop-dot t-' + stop.type + '"></div>'
-      + '<div class="stop-card">'
-        + '<div class="stop-top">'
-          + '<div class="stop-title-wrap">'
-            + '<div class="stop-title"><span class="stop-icon">' + icon + '</span>' + esc(stop.title) + '</div>'
-            + (stop.sub ? '<div class="stop-subtitle">' + esc(stop.sub) + '</div>' : '')
-          + '</div>'
-          + badge
-        + '</div>'
-        + (stop.notes ? '<div class="stop-notes">' + esc(stop.notes) + '</div>' : '')
-        + (stop.alert ? '<div class="stop-alert">&#9888; ' + esc(stop.alert) + '</div>' : '')
-        + '<div class="map-actions">'
-          + '<a href="' + gm(stop.q) + '" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
-          + '<a href="' + nav(stop.q) + '" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
-          + '<button class="map-btn" onclick="copyAddr(' + dayIdx + ',' + si + ')">⎘ Copy</button>'
-        + '</div>'
-      + '</div>'
-    + '</div>';
-  }
-
-  /* ─── RENDER ITINERARY ──────────────────────────────── */
-  function renderItinerary() {
-    var today = isoToday();
-    var html = '<div class="trip-banner">'
-      + '<div class="trip-banner-kana">A Private Journey · Happy Camper Ltd.</div>'
-      + '<h2>Tokyo &amp; Kyoto</h2>'
-      + '<div class="banner-dates">1 – 9 May 2026 · Two Guests</div>'
-      + '<div class="banner-chips">'
-        + '<span class="banner-chip">🏨 Janu Tokyo</span>'
-        + '<span class="banner-chip">🏯 Capella Kyoto</span>'
-        + '<span class="banner-chip">🌿 Aman Tokyo</span>'
-        + '<span class="banner-chip">⛩️ Guide: Ryan (Kyoto)</span>'
-        + '<span class="banner-chip">👘 Joni Waka VIP Tour</span>'
-        + '<span class="banner-chip">🥩 OKA Confirmed</span>'
-      + '</div></div>'
-      + '<div class="section-label">Daily Itinerary</div>';
-
-    TRIP.days.forEach(function(day, idx) {
-      var isToday = day.date === today;
-      var isPast  = day.date < today;
-      var isOpen  = isToday || (today < TRIP.startDate && idx === 0);
-      var dining  = 0;
-      day.stops.forEach(function(s) { if (s.type === 'restaurant' || s.type === 'bar') dining++; });
-
-      html += '<div class="day-card'
-        + (isToday ? ' is-today' : '')
-        + (isPast  ? ' is-past'  : '')
-        + (isOpen  ? ' open'     : '')
-        + '" id="day-' + day.dayNum + '" style="animation-delay:' + (idx * 0.04).toFixed(2) + 's">'
-        + '<div class="day-header" onclick="toggleDay(' + day.dayNum + ')">'
-          + '<div class="day-num">D' + day.dayNum + '</div>'
-          + '<div class="day-header-info">'
-            + '<div class="day-name">' + esc(day.weekday) + '</div>'
-            + '<div class="day-sub">'
-              + '<span class="day-city-badge city-' + day.city.toLowerCase() + '">' + day.city + '</span>'
-              + (isToday ? '<span class="today-pill">TODAY</span>' : '')
-              + (dining > 0 ? '<span>' + dining + ' dining</span>' : '')
-            + '</div>'
-          + '</div>'
-          + '<span class="day-chevron">&#9662;</span>'
-        + '</div>'
-        + '<div class="day-body"><div class="day-body-inner">';
-
-      if (day.hotel) {
-        html += '<div class="hotel-bar ' + day.hs + '">'
-          + '<div style="font-size:15px">🏨</div>'
-          + '<div style="flex:1"><div class="hotel-bar-name">' + esc(day.hotel) + '</div>'
-          + '<div class="hotel-bar-detail">' + day.city + ' · Night ' + day.dayNum + '</div></div>'
-          + '<a href="' + gm(day.hq) + '" target="_blank" rel="noopener" class="hotel-map-link">📍 Map</a>'
-          + '</div>';
-      }
-      if (day.notes) html += '<div class="day-note-bar">' + esc(day.notes) + '</div>';
-      html += '<div class="weather-widget" id="wx-' + day.date + '">'
-        + '<span class="wx-loading">Loading weather…</span></div>';
-      html += '<div class="timeline">';
-      day.stops.forEach(function(stop, si) { html += renderStop(stop, idx, si); });
-      html += '</div></div></div></div>';
-    });
-
-    document.getElementById('tab-itinerary').innerHTML = html;
-
-    /* set fallback weather immediately, then fetch */
-    TRIP.days.forEach(function(day) {
-      var el = document.getElementById('wx-' + day.date);
-      if (el) setWxFallback(el, day.city);
-    });
-    try { loadWeather(); } catch(e) {}
-  }
-
-  /* ─── RENDER UTILITIES ──────────────────────────────── */
-  function renderUtilities() {
-    var dietHTML = Object.keys(TRIP.dietary).map(function(name) {
-      var d = TRIP.dietary[name];
-      return '<div style="margin-bottom:14px">'
-        + '<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px">' + name + '</div>'
-        + d.no.map(function(x) { return '<span class="diet-chip diet-no">&#x2717; ' + x + '</span>'; }).join('')
-        + d.yes.map(function(x) { return '<span class="diet-chip diet-yes">&#x2713; ' + x + '</span>'; }).join('')
-        + '</div>';
-    }).join('');
-
-    var hotelsHTML = TRIP.hotels.map(function(h) {
-      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-lt)">'
-        + '<div style="font-size:20px">🏨</div>'
-        + '<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">' + h.name + '</div>'
-        + '<div style="font-size:11px;color:var(--ink-3);margin-top:2px">' + h.nights + '</div></div>'
-        + '<a href="' + gm(h.q) + '" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:500">📍 Map</a>'
-        + '</div>';
-    }).join('');
-
-    document.getElementById('tab-utilities').innerHTML = ''
-      + '<div class="section-label">Currency Converter</div>'
-      + '<div class="util-card"><div class="util-card-title">JPY &#8596; USD</div>'
-        + '<div class="fx-row">'
-          + '<div class="fx-group"><div class="fx-label">🇯🇵 Japanese Yen</div>'
-            + '<input class="fx-input" id="fx-jpy" type="number" inputmode="numeric" value="10000"></div>'
-          + '<button class="fx-swap-btn" id="fx-swap">&#8651;</button>'
-          + '<div class="fx-group"><div class="fx-label">🇺🇸 US Dollar</div>'
-            + '<input class="fx-input" id="fx-usd" type="number" inputmode="decimal"></div>'
-        + '</div>'
-        + '<div class="fx-rate-note">Rate: 1 USD = ' + FX_RATE + ' JPY (indicative)</div>'
-      + '</div>'
-      + '<div class="section-label">Dietary Notes</div>'
-      + '<div class="util-card">' + dietHTML
-        + '<div style="font-size:11px;color:var(--ink-4);margin-top:4px">All dietary requirements confirmed with Happy Camper and communicated to restaurants in advance.</div>'
-      + '</div>'
-      + '<div class="section-label">Hotels at a Glance</div>'
-      + '<div class="util-card">' + hotelsHTML + '</div>'
-      + '<div class="section-label">Quick Reference</div>'
-      + '<div class="util-card"><ul class="info-list">'
-        + '<li><span class="info-emoji">💴</span><div class="info-text"><strong>Cash is essential</strong>Carry 50,000-70,000 yen per person. ATMs at 7-Eleven and Japan Post accept foreign cards.</div></li>'
-        + '<li><span class="info-emoji">🏖️</span><div class="info-text"><strong>Golden Week — 3-6 May</strong>Japan\'s biggest public holiday. Parks busy — all reservations unaffected.</div></li>'
-        + '<li><span class="info-emoji">📱</span><div class="info-text"><strong>Suica (Mobile Wallet)</strong>Wallet app → tap + → search Suica. Covers Tokyo and Kyoto subway and bus.</div></li>'
-        + '<li><span class="info-emoji">⏰</span><div class="info-text"><strong>Time Zone: JST = UTC+9</strong>No daylight saving. From CEST: +7 hours.</div></li>'
-        + '<li><span class="info-emoji">🔌</span><div class="info-text"><strong>Electricity: 100V · Type A</strong>European visitors need a converter.</div></li>'
-        + '<li><span class="info-emoji">📡</span><div class="info-text"><strong>eSIM Recommended</strong>Activate before landing. Providers: Airalo, HolaFly, YO.</div></li>'
-      + '</ul></div>'
-      + '<div class="section-label">Dining Etiquette</div>'
-      + '<div class="util-card">'
-        + '<div class="rule-item"><span class="rule-icon">🚫</span><div class="rule-text"><strong>No Fragrance — Critical</strong>Avoid all perfume, cologne, and scented products on dining days.</div></div>'
-        + '<div class="rule-item"><span class="rule-icon">⏰</span><div class="rule-text"><strong>Punctuality</strong>Arrive on time or early — the meal begins simultaneously for all guests.</div></div>'
-        + '<div class="rule-item"><span class="rule-icon">💍</span><div class="rule-text"><strong>Protect the Counter</strong>Remove rings, bracelets, and watches. Counters are often precious Hinoki cypress.</div></div>'
-        + '<div class="rule-item"><span class="rule-icon">💰</span><div class="rule-text"><strong>No Tipping</strong>Not customary. Say Gochisousama deshita — deeply appreciated.</div></div>'
-      + '</div>'
-      + '<div class="util-card" style="background:var(--navy-lt);border-color:rgba(13,40,71,.15)">'
-        + '<div class="util-card-title" style="color:var(--navy)">Culinary Access Program</div>'
-        + '<div style="font-size:13px;color:var(--ink-2);line-height:1.6">Program fee: <strong>USD 13,000 (agreed)</strong><br>Covers reservation access, guide coordination, Joni Waka VIP tour, fish market access.<br><br><strong>Excludes:</strong> All food, wine, and restaurant charges — settled at cost.</div>'
-      + '</div>';
-
-    /* FX events — attached after render */
-    var jpyEl = document.getElementById('fx-jpy');
-    var usdEl = document.getElementById('fx-usd');
-    function fromJpy() {
-      var v = parseFloat(jpyEl.value);
-      usdEl.value = isNaN(v) ? '' : (v / FX_RATE).toFixed(2);
-    }
-    function fromUsd() {
-      var v = parseFloat(usdEl.value);
-      jpyEl.value = isNaN(v) ? '' : String(Math.round(v * FX_RATE));
-    }
-    jpyEl.addEventListener('input', fromJpy);
-    usdEl.addEventListener('input', fromUsd);
-    document.getElementById('fx-swap').addEventListener('click', function() {
-      var tmp = jpyEl.value;
-      jpyEl.value = usdEl.value ? String(Math.round(parseFloat(usdEl.value) * FX_RATE)) : '';
-      usdEl.value = tmp ? (parseFloat(tmp) / FX_RATE).toFixed(2) : '';
-    });
-    fromJpy();
-  }
-
-  /* ─── RENDER EMERGENCY ──────────────────────────────── */
-  function renderEmergency() {
-    document.getElementById('tab-emergency').innerHTML = ''
-      + '<div class="emergency-banner"><h2>Emergency &amp; Contacts</h2><p>Japan has excellent emergency services. Save these numbers.</p></div>'
-      + '<div class="section-label">Emergency Numbers</div>'
-      + '<div class="contact-card">'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚨</div><div><div class="contact-label">Police</div><div class="contact-sub">All emergency police calls</div></div></div><a href="tel:110" class="call-btn cr">📞 110</a></div>'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚒</div><div><div class="contact-label">Ambulance &amp; Fire</div><div class="contact-sub">Medical emergencies</div></div></div><a href="tel:119" class="call-btn cr">📞 119</a></div>'
-      + '</div>'
-      + '<div class="section-label">Happy Camper — Your Trip Team</div>'
-      + '<div class="contact-card">'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🌿</div><div><div class="contact-label">Happy Camper Assistance</div><div class="contact-sub">24/7 trip support line</div></div></div><a href="tel:+819061589006" class="call-btn cn">📞 Call</a></div>'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">⛩️</div><div><div class="contact-label">Ryan — Kyoto Guide</div><div class="contact-sub">Private guide · Tue 5 – Wed 6 May</div></div></div><span class="call-btn co">WhatsApp</span></div>'
-      + '</div>'
-      + '<div class="section-label">Hotels</div>'
-      + '<div class="contact-card">'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏨</div><div><div class="contact-label">Janu Tokyo</div><div class="contact-sub">Fri 1 – Mon 4 May · Azabudai Hills</div></div></div><a href="tel:+81345678900" class="call-btn cb">📞 Call</a></div>'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-p">🏯</div><div><div class="contact-label">Capella Kyoto</div><div class="contact-sub">Tue 5 – Wed 6 May · Sanjo</div></div></div><a href="tel:+81757460888" class="call-btn" style="background:#5C35B0;color:#fff">📞 Call</a></div>'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-g">🌿</div><div><div class="contact-label">Aman Tokyo</div><div class="contact-sub">Thu 7 – Fri 8 May · Otemachi</div></div></div><a href="tel:+81352243333" class="call-btn cg">📞 Call</a></div>'
-      + '</div>'
-      + '<div class="section-label">Medical</div>'
-      + '<div class="contact-card">'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">International Medical Clinic Tokyo</div><div class="contact-sub">English-speaking · Roppongi Hills</div></div></div><a href="tel:+81354121171" class="call-btn cb">📞 Call</a></div>'
-        + '<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Japan Baptist Hospital — Kyoto</div><div class="contact-sub">English-speaking · Kamigamo</div></div></div><a href="tel:+81757814141" class="call-btn cb">📞 Call</a></div>'
-      + '</div>'
-      + '<div class="section-label">Useful Phrases</div>'
-      + '<div class="util-card"><ul class="info-list">'
-        + '<li><span class="info-emoji">🙏</span><div class="info-text"><strong>Gochisousama deshita</strong>Thank you for the meal</div></li>'
-        + '<li><span class="info-emoji">🚑</span><div class="info-text"><strong>Kyukyusha wo yonde kudasai</strong>Please call an ambulance</div></li>'
-        + '<li><span class="info-emoji">🏥</span><div class="info-text"><strong>Byoin wa doko desu ka?</strong>Where is the hospital?</div></li>'
-        + '<li><span class="info-emoji">👮</span><div class="info-text"><strong>Keisatsu wo yonde kudasai</strong>Please call the police</div></li>'
-      + '</ul></div>';
-  }
-
-  /* ─── INIT ──────────────────────────────────────────── */
-  function init() {
-    renderItinerary();
-    renderUtilities();
-    renderEmergency();
-    tickClock();
-    setInterval(tickClock, 1000);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+/* ── TOAST ───────────────────────────────────────────────────── */
+var toastTm;
+function showToast(msg){
+  var el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastTm);
+  toastTm=setTimeout(function(){el.classList.remove('show');},2200);
+}
+window.copyAddr=function(di,si){
+  var stop=TRIP.days[di].stops[si];
+  var txt=(stop.addr&&stop.addr!=='Tokyo'&&stop.addr!=='Kyoto')?stop.addr:stop.loc;
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(txt).then(function(){showToast('Address copied');});
   } else {
-    init();
+    var ta=document.createElement('textarea');ta.value=txt;ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    showToast('Address copied');
   }
+};
+
+/* ── CLOCK ───────────────────────────────────────────────────── */
+function jst(){return new Date(Date.now()+9*3600000);}
+function isoToday(){return jst().toISOString().slice(0,10);}
+function tickClock(){
+  var d=jst();
+  document.getElementById('jst-clock').textContent=String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0');
+  var today=d.toISOString().slice(0,10),found=null;
+  for(var i=0;i<TRIP.days.length;i++){if(TRIP.days[i].date===today){found=TRIP.days[i];break;}}
+  var lbl=document.getElementById('trip-day-label');
+  if(found) lbl.textContent='Day '+found.dayNum+' of 9 · Japan';
+  else if(today<TRIP.startDate) lbl.textContent='Trip begins 2 May 2026';
+  else if(today>TRIP.endDate)   lbl.textContent='Trip complete · Sayonara!';
+  else lbl.textContent='Japan Standard Time';
+}
+
+/* ── TABS ────────────────────────────────────────────────────── */
+document.querySelector('.tab-nav').addEventListener('click',function(e){
+  var btn=e.target.closest('.tab-btn');
+  if(!btn)return;
+  var name=btn.getAttribute('data-tab');
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===name);});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id==='tab-'+name);});
+  fitHeader();
+});
+
+/* ── TOGGLE ──────────────────────────────────────────────────── */
+window.toggleDay=function(num){
+  var card=document.getElementById('day-'+num);
+  if(card)card.classList.toggle('open');
+};
+
+/* ── ESC ─────────────────────────────────────────────────────── */
+function esc(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+var ICONS={flight:'✈️',transport:'🚄',hotel:'🏨',restaurant:'🍽️',activity:'🎌',market:'🏪',shopping:'🛍️',bar:'🍸',bday:'🎂'};
+
+/* ── RENDER STOP ─────────────────────────────────────────────── */
+function renderStop(stop,di,si){
+  var icon=ICONS[stop.type]||'📍';
+  var bc=stop.bd?'bd':stop.ok?'ok':stop.sb?'sb':'';
+  var badge=stop.badge?'<span class="stop-badge '+bc+'">'+esc(stop.badge)+'</span>':'';
+  var isBday=stop.type==='bday';
+  return '<div class="stop-item">'
+    +'<div class="stop-time">'+(stop.time?stop.time.replace('~',''):'')+'</div>'
+    +'<div class="stop-dot t-'+(isBday?'bday':stop.type)+'"></div>'
+    +'<div class="stop-card'+(isBday?' bday-card':'')+'"><div class="stop-top">'
+    +'<div class="stop-title-wrap">'
+    +'<div class="stop-title"><span class="stop-icon">'+icon+'</span>'+esc(stop.title)+'</div>'
+    +(stop.sub?'<div class="stop-subtitle">'+esc(stop.sub)+'</div>':'')
+    +'</div>'+badge+'</div>'
+    +(stop.notes?'<div class="stop-notes">'+esc(stop.notes)+'</div>':'')
+    +(stop.alert?'<div class="stop-alert">&#9888; '+esc(stop.alert)+'</div>':'')
+    +'<div class="map-actions">'
+    +'<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
+    +'<a href="'+nav(stop.q)+'" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
+    +'<button class="map-btn" onclick="copyAddr('+di+','+si+')">&#10063; Copy</button>'
+    +'</div></div></div>';
+}
+
+/* ── RENDER ITINERARY ────────────────────────────────────────── */
+function renderItinerary(){
+  var today=isoToday();
+  var html='<div class="trip-banner">'
+    +'<div class="trip-banner-kana">A Private Journey · Happy Camper Ltd.</div>'
+    +'<h2>Tokyo &amp; Kyoto</h2>'
+    +'<div class="banner-dates">2 – 10 May 2026 · Two Guests · 8 Nights</div>'
+    +'<div class="banner-chips">'
+    +'<span class="banner-chip">🏨 Janu Tokyo</span>'
+    +'<span class="banner-chip">🏯 Capella Kyoto</span>'
+    +'<span class="banner-chip">🌿 Aman Tokyo</span>'
+    +'<span class="banner-chip">⛩️ Ryan Durning (Kyoto)</span>'
+    +'<span class="banner-chip">👘 Joni Waka VIP Tour</span>'
+    +'<span class="banner-chip bday">🎂 Birthday · 5 May</span>'
+    +'<span class="banner-chip">🥩 OKA Confirmed</span>'
+    +'</div></div>'
+    +'<div class="section-label">Daily Itinerary</div>';
+
+  TRIP.days.forEach(function(day,idx){
+    var isToday=day.date===today;
+    var isPast=day.date<today;
+    var isOpen=isToday||(today<TRIP.startDate&&idx===0);
+    var dining=day.stops.filter(function(s){return s.type==='restaurant'||s.type==='bar'||s.type==='bday';}).length;
+    html+='<div class="day-card'
+      +(isToday?' is-today':'')+(isPast?' is-past':'')
+      +(day.bday?' is-bday':'')+(isOpen?' open':'')
+      +'" id="day-'+day.dayNum+'" style="animation-delay:'+(idx*.04).toFixed(2)+'s">'
+      +'<div class="day-header" onclick="toggleDay('+day.dayNum+')">'
+      +'<div class="day-num">D'+day.dayNum+'</div>'
+      +'<div class="day-header-info">'
+      +'<div class="day-name">'+esc(day.weekday)+'</div>'
+      +'<div class="day-sub">'
+      +'<span class="day-city-badge city-'+day.city.toLowerCase()+'">'+day.city+'</span>'
+      +(isToday?'<span class="today-pill">TODAY</span>':'')
+      +(day.bday?'<span class="bday-pill">🎂 Birthday</span>':'')
+      +(dining>0?'<span>'+dining+' dining</span>':'')
+      +'</div></div>'
+      +'<span class="day-chevron">&#9662;</span>'
+      +'</div>'
+      +'<div class="day-body"><div class="day-body-inner">';
+    if(day.hotel){
+      html+='<div class="hotel-bar '+day.hs+'">'
+        +'<div style="font-size:15px">🏨</div>'
+        +'<div style="flex:1"><div class="hb-name">'+esc(day.hotel)+'</div>'
+        +'<div class="hb-detail">'+day.city+' · Night '+day.dayNum+'</div></div>'
+        +'<a href="'+gm(day.hq)+'" target="_blank" rel="noopener" class="hb-link">📍 Map</a>'
+        +'</div>';
+    }
+    if(day.notes){
+      html+='<div class="day-note-bar'+(day.bday?' bday-note':'')+'">'+esc(day.notes)+'</div>';
+    }
+    html+='<div class="weather-widget" id="wx-'+day.date+'"><span class="wx-loading">Loading weather…</span></div>'
+      +'<div class="timeline">';
+    day.stops.forEach(function(stop,si){html+=renderStop(stop,idx,si);});
+    html+='</div></div></div></div>';
+  });
+  document.getElementById('tab-itinerary').innerHTML=html;
+  TRIP.days.forEach(function(day){var el=document.getElementById('wx-'+day.date);if(el)setWxFb(el,day.city);});
+  try{loadWeather();}catch(e){}
+}
+
+/* ── RENDER UTILITIES ────────────────────────────────────────── */
+function renderUtilities(){
+  var dietHTML=Object.keys(TRIP.dietary).map(function(name){
+    var d=TRIP.dietary[name];
+    return '<div style="margin-bottom:14px">'
+      +'<div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px">'+name+'</div>'
+      +d.no.map(function(x){return '<span class="diet-chip diet-no">&#x2717; '+x+'</span>';}).join('')
+      +d.yes.map(function(x){return '<span class="diet-chip diet-yes">&#x2713; '+x+'</span>';}).join('')
+      +'</div>';
+  }).join('');
+  var hotelsHTML=TRIP.hotels.map(function(h){
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-lt)">'
+      +'<div style="font-size:20px">🏨</div>'
+      +'<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">'+h.name+'</div>'
+      +'<div style="font-size:11px;color:var(--ink-3);margin-top:2px">'+h.nights+'</div></div>'
+      +'<a href="'+gm(h.q)+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:500">📍 Map</a>'
+      +'</div>';
+  }).join('');
+  document.getElementById('tab-utilities').innerHTML=''
+    +'<div class="section-label">Currency Converter</div>'
+    +'<div class="util-card"><div class="util-card-title">JPY &#8596; USD</div>'
+    +'<div class="fx-row"><div class="fx-group"><div class="fx-label">🇯🇵 Japanese Yen</div>'
+    +'<input class="fx-input" id="fx-jpy" type="number" inputmode="numeric" value="10000"></div>'
+    +'<button class="fx-swap-btn" id="fx-swap">&#8651;</button>'
+    +'<div class="fx-group"><div class="fx-label">🇺🇸 US Dollar</div>'
+    +'<input class="fx-input" id="fx-usd" type="number" inputmode="decimal"></div></div>'
+    +'<div class="fx-rate-note">Rate: 1 USD = '+FX_RATE+' JPY (indicative) · Update FX_RATE in the script</div></div>'
+    +'<div class="section-label">Dietary Notes</div>'
+    +'<div class="util-card">'+dietHTML
+    +'<div style="font-size:11px;color:var(--ink-4);margin-top:4px">All requirements communicated to restaurants in advance by Happy Camper.</div></div>'
+    +'<div class="section-label">Hotels at a Glance</div>'
+    +'<div class="util-card">'+hotelsHTML+'</div>'
+    +'<div class="section-label">Quick Reference</div>'
+    +'<div class="util-card"><ul class="info-list">'
+    +'<li><span class="info-emoji">💴</span><div class="info-text"><strong>Cash is essential</strong>Carry 50,000–70,000 ¥/person. ATMs at 7-Eleven and Japan Post accept foreign cards.</div></li>'
+    +'<li><span class="info-emoji">🏖️</span><div class="info-text"><strong>Golden Week — 3–6 May</strong>Japan\'s biggest public holiday. Parks busy — all restaurants and private experiences unaffected.</div></li>'
+    +'<li><span class="info-emoji">📱</span><div class="info-text"><strong>Suica (Mobile Wallet)</strong>Wallet app → tap + → search Suica. Covers Tokyo and Kyoto subway and bus.</div></li>'
+    +'<li><span class="info-emoji">⏰</span><div class="info-text"><strong>Time Zone: JST = UTC+9</strong>No daylight saving. From CEST: +7 hours.</div></li>'
+    +'<li><span class="info-emoji">🔌</span><div class="info-text"><strong>Electricity: 100V · Type A</strong>European visitors need a voltage converter.</div></li>'
+    +'<li><span class="info-emoji">📡</span><div class="info-text"><strong>eSIM Recommended</strong>Activate before landing. Providers: Airalo, HolaFly, YO.</div></li>'
+    +'</ul></div>'
+    +'<div class="section-label">Dining Etiquette</div>'
+    +'<div class="util-card">'
+    +'<div class="rule-item"><span class="rule-icon">🚫</span><div class="rule-text"><strong>No Fragrance — Critical</strong>Avoid all perfume, cologne, and scented products on dining days. Even light fragrance disrupts the chef at omakase counters.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">⏰</span><div class="rule-text"><strong>Punctuality</strong>Arrive on time or early — the meal begins simultaneously for all guests.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">💍</span><div class="rule-text"><strong>Protect the Counter</strong>Remove rings, bracelets, and watches. Counters are often precious Hinoki cypress.</div></div>'
+    +'<div class="rule-item"><span class="rule-icon">💰</span><div class="rule-text"><strong>No Tipping</strong>Not customary. Say Gochisousama deshita — deeply appreciated.</div></div>'
+    +'</div>'
+    +'<div class="util-card" style="background:var(--navy-lt);border-color:rgba(13,40,71,.15)">'
+    +'<div class="util-card-title" style="color:var(--navy)">Culinary Access Program</div>'
+    +'<div style="font-size:13px;color:var(--ink-2);line-height:1.6">Program fee: <strong>USD 13,000 (agreed)</strong><br>Covers reservation access, guide coordination, fish market access, and ongoing liaison.<br><br><strong>Excludes:</strong> All food, wine, and restaurant charges — settled directly at cost.</div>'
+    +'</div>';
+  var jEl=document.getElementById('fx-jpy'),uEl=document.getElementById('fx-usd');
+  function fJ(){var v=parseFloat(jEl.value);uEl.value=isNaN(v)?'':(v/FX_RATE).toFixed(2);}
+  function fU(){var v=parseFloat(uEl.value);jEl.value=isNaN(v)?'':String(Math.round(v*FX_RATE));}
+  jEl.addEventListener('input',fJ);uEl.addEventListener('input',fU);
+  document.getElementById('fx-swap').addEventListener('click',function(){var t=jEl.value;jEl.value=uEl.value?String(Math.round(parseFloat(uEl.value)*FX_RATE)):'';uEl.value=t?(parseFloat(t)/FX_RATE).toFixed(2):'';});
+  fJ();
+}
+
+/* ── RENDER EMERGENCY ────────────────────────────────────────── */
+function renderEmergency(){
+  document.getElementById('tab-emergency').innerHTML=''
+    +'<div class="emergency-banner"><h2>Emergency &amp; Contacts</h2><p>Japan has excellent emergency services. Save these numbers.</p></div>'
+    +'<div class="section-label">Emergency Numbers</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚨</div><div><div class="contact-label">Police</div><div class="contact-sub">All emergency police calls</div></div></div><a href="tel:110" class="call-btn cr">📞 110</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-r">🚒</div><div><div class="contact-label">Ambulance &amp; Fire</div><div class="contact-sub">Medical emergencies</div></div></div><a href="tel:119" class="call-btn cr">📞 119</a></div>'
+    +'</div>'
+    +'<div class="section-label">Happy Camper — Your Trip Team</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🌿</div><div><div class="contact-label">Happy Camper Assistance</div><div class="contact-sub">24/7 trip support line</div></div></div><a href="tel:+819061589006" class="call-btn cn">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">⛩️</div><div><div class="contact-label">Ryan Durning — Kyoto Guide</div><div class="contact-sub">Private guide · Wed 6 – Thu 7 May</div></div></div><span class="call-btn co">WhatsApp</span></div>'
+    +'</div>'
+    +'<div class="section-label">Hotels</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏨</div><div><div class="contact-label">Janu Tokyo</div><div class="contact-sub">Sat 2 – Tue 5 May · Azabudai Hills</div></div></div><a href="tel:+81345678900" class="call-btn cb">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-p">🏯</div><div><div class="contact-label">Capella Kyoto</div><div class="contact-sub">Wed 6 – Thu 7 May · Sanjo</div></div></div><a href="tel:+81757460888" class="call-btn" style="background:#5C35B0;color:#fff;border:none">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-g">🌿</div><div><div class="contact-label">Aman Tokyo</div><div class="contact-sub">Fri 8 – Sat 9 May · Otemachi</div></div></div><a href="tel:+81352243333" class="call-btn cg">📞 Call</a></div>'
+    +'</div>'
+    +'<div class="section-label">Medical</div>'
+    +'<div class="contact-card">'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">International Medical Clinic Tokyo</div><div class="contact-sub">English-speaking · Roppongi Hills</div></div></div><a href="tel:+81354121171" class="call-btn cb">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Japan Baptist Hospital — Kyoto</div><div class="contact-sub">English-speaking · Kamigamo</div></div></div><a href="tel:+81757814141" class="call-btn cb">📞 Call</a></div>'
+    +'</div>'
+    +'<div class="section-label">Useful Phrases</div>'
+    +'<div class="util-card"><ul class="info-list">'
+    +'<li><span class="info-emoji">🙏</span><div class="info-text"><strong>Gochisousama deshita</strong>Thank you for the meal — say this after dining</div></li>'
+    +'<li><span class="info-emoji">🚑</span><div class="info-text"><strong>Kyukyusha wo yonde kudasai</strong>Please call an ambulance</div></li>'
+    +'<li><span class="info-emoji">🏥</span><div class="info-text"><strong>Byoin wa doko desu ka?</strong>Where is the hospital?</div></li>'
+    +'<li><span class="info-emoji">👮</span><div class="info-text"><strong>Keisatsu wo yonde kudasai</strong>Please call the police</div></li>'
+    +'</ul></div>';
+}
+
+/* ── INIT ────────────────────────────────────────────────────── */
+function init(){
+  renderItinerary();
+  renderUtilities();
+  renderEmergency();
+  tickClock();
+  setInterval(tickClock,1000);
+  /* Re-measure header after everything renders */
+  setTimeout(fitHeader,100);
+  setTimeout(fitHeader,600);
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',init);
+}else{
+  init();
+}
 
 }());
 </script>
