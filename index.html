@@ -19,7 +19,7 @@
       --border:#D8E4F0; --border-lt:#EBF2FA; --white:#FFFFFF;
       --shadow:0 2px 12px rgba(13,40,71,.10),0 1px 3px rgba(13,40,71,.06);
       --radius:18px; --radius-md:12px; --radius-sm:8px;
-      --header-h:112px;
+      --header-h:108px;
       --font-serif:'Cormorant Garamond','Palatino Linotype',Georgia,serif;
       --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     }
@@ -37,11 +37,11 @@
 .brand-sakura{font-size:20px;line-height:1;flex-shrink:0}
 .brand-title{font-family:var(--font-serif);font-size:18px;font-weight:300;letter-spacing:.6px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand-sub{font-size:10px;color:rgba(255,255,255,.42);letter-spacing:.8px;text-transform:uppercase;margin-top:2px}
-.header-clock-wrap{text-align:center;flex-shrink:0;padding:0 8px}
-#jst-clock{font-family:'SF Mono','Menlo','Monaco','Courier New',monospace;font-size:16px;font-weight:300;letter-spacing:1.5px;color:#fff}
-#trip-day-label{font-size:9.5px;color:rgba(255,255,255,.40);letter-spacing:.5px;margin-top:2px}
-.header-logo{flex-shrink:0;display:flex;align-items:center;width:56px;justify-content:flex-end}
-.header-logo img{height:46px;width:auto;filter:drop-shadow(0 1px 3px rgba(0,0,0,.3))}
+.header-right{text-align:right;flex-shrink:0}
+.header-right-inner{display:flex;align-items:center;gap:12px}
+#jst-clock{font-family:'SF Mono','Menlo','Monaco','Courier New',monospace;font-size:17px;font-weight:300;letter-spacing:1.5px;color:#fff}
+#trip-day-label{font-size:10px;color:rgba(255,255,255,.40);letter-spacing:.5px;margin-top:2px}
+#hc-logo{height:44px;width:auto;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))}
 .tab-nav{display:flex;border-top:1px solid rgba(255,255,255,.07)}
 .tab-btn{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.42);font-size:11px;font-weight:500;letter-spacing:.6px;text-transform:uppercase;padding:9px 4px 7px;transition:color .18s,border-color .18s;cursor:pointer}
 .tab-btn.active{color:var(--sakura);border-bottom-color:var(--sakura)}
@@ -178,7 +178,7 @@
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(min-width:700px){
-  :root{--header-h:82px}
+  :root{--header-h:80px}
   .header-top{padding:16px 40px 12px}
   .tab-nav{padding:0 40px}
   .tab-btn{font-size:13px;padding:10px 20px;flex:none}
@@ -204,12 +204,14 @@
         <div class="brand-sub">Isaac &amp; Emmanuelle · Happy Camper</div>
       </div>
     </div>
-    <div class="header-clock-wrap">
-      <div id="jst-clock">--:--</div>
-      <div id="trip-day-label">Japan Standard Time</div>
-    </div>
-    <div class="header-logo">
-      <img id="hc-logo" alt="Happy Camper">
+    <div class="header-right">
+      <div class="header-right-inner">
+        <div>
+          <div id="jst-clock">--:--</div>
+          <div id="trip-day-label">Japan Standard Time</div>
+        </div>
+        <img id="hc-logo" alt="Happy Camper">
+      </div>
     </div>
   </div>
   <nav class="tab-nav">
