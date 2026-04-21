@@ -322,7 +322,7 @@ var TRIP = {
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
           notes:'Janu Tokyo manages the transfer directly from the airport. No driver sign to look for — hotel concierge will communicate details. Withdraw yen at the 7-Eleven ATM on arrival.' },
         { time:'19:30', title:'Nakano', sub:'Welcome dinner · Sushi counter',
-          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Sushi Nakano', addr:'Tokyo', q:'Sushi Nakano Tokyo',
           notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
           alert:'No perfume or fragrance at the counter' }
@@ -342,7 +342,7 @@ var TRIP = {
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo\'s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
         { time:'19:30', title:'Tempura Tenko', sub:'Dinner · Counter tempura',
-          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Tempura Tenko', addr:'Tokyo', q:'Tempura Tenko Tokyo',
           notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
           alert:'No fragrance at the counter' }
@@ -363,7 +363,7 @@ var TRIP = {
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
         { time:'19:30', title:'J-Free', sub:'Dinner · Contemporary fusion',
-          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
+          type:'restaurant', badge:'Requested', badgeType:'requested',
           loc:'J-Free Tokyo', addr:'Tokyo', q:'J-Free restaurant Tokyo',
           notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
       ]
@@ -411,7 +411,7 @@ var TRIP = {
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
           notes:'Explore Gion\'s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher\'s Walk follows a canal lined with cherry trees.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -431,7 +431,7 @@ var TRIP = {
           type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
           notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
         { time:'19:00', title:'OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
-          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
+          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Oka Kyoto', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
           notes:'One of the top wagyu restaurants in Kyoto. The chef\'s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
           alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
@@ -466,7 +466,7 @@ var TRIP = {
       notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
       stops:[
         { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World\'s largest fish market',
-          type:'market', badge:'HC Confirmed', badgeType:'confirmed',
+          type:'market', badge:'Confirmed', badgeType:'confirmed',
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
           notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan\'s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
           alert:'Comfortable closed shoes required · Follow your guide at all times' },
@@ -650,7 +650,7 @@ function renderItinerary(){
     +'<span class="banner-chip">🥩 OKA Confirmed</span>'
     +'</div></div>'
     +'<div class="booking-legend">'
-    +'<span class="bl-item"><span class="bl-dot confirmed"></span>HC Confirmed</span>'
+    +'<span class="bl-item"><span class="bl-dot confirmed"></span>Confirmed</span>'
     +'<span class="bl-item"><span class="bl-dot self-booked"></span>Self-booked</span>'
     +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
     +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
