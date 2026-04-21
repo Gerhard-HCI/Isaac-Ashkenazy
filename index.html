@@ -77,6 +77,14 @@ body{display:flex;flex-direction:column}
 .banner-chip.bday{background:rgba(232,164,178,.25);border-color:rgba(232,164,178,.4)}
 
 .section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-4);padding:8px 2px 6px}
+.booking-legend{display:flex;flex-wrap:wrap;gap:8px 14px;padding:10px 14px;background:var(--white);border-radius:var(--radius-md);margin-bottom:10px;border:1px solid var(--border-lt)}
+.bl-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--ink-3);font-weight:500}
+.bl-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.bl-dot.confirmed{background:#C8E6C9;border:1px solid rgba(27,94,32,.3)}
+.bl-dot.self-booked{background:#FADADD;border:1px solid rgba(123,26,26,.3)}
+.bl-dot.walk-in{background:#FFF9E6;border:1px solid rgba(107,80,0,.3)}
+.bl-dot.requested{background:#80DEEA;border:1px solid rgba(0,77,86,.3)}
+.bl-dot.suggestion{background:#BBDEFB;border:1px solid rgba(13,60,110,.3)}
 
 /* ── DAY CARDS ── */
 .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
@@ -150,10 +158,22 @@ body{display:flex;flex-direction:column}
 .stop-icon{font-size:13px;margin-right:5px}
 .stop-title{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3}
 .stop-subtitle{font-size:11px;color:var(--ink-3);margin-top:2px}
-.stop-badge{font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:5px;flex-shrink:0;background:var(--gold-lt);color:var(--gold);border:1px solid rgba(176,124,34,.22);white-space:nowrap}
-.stop-badge.ok{background:#EBF6EE;color:#2E7D32;border-color:rgba(46,125,50,.22)}
-.stop-badge.sb{background:var(--navy-lt);color:var(--navy);border-color:rgba(13,40,71,.22)}
-.stop-badge.bd{background:#FCE4EC;color:#C2185B;border-color:rgba(194,24,91,.22)}
+/* ── BOOKING STATUS BADGES — exact canvas legend colours ── */
+.stop-badge{font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:5px;flex-shrink:0;white-space:nowrap;letter-spacing:.1px}
+/* confirmed  = mint green (canvas legend) */
+.stop-badge.confirmed{background:#C8E6C9;color:#1B5E20;border:1px solid rgba(27,94,32,.18)}
+/* self-booked = light pink (canvas legend) */
+.stop-badge.self-booked{background:#FADADD;color:#7B1A1A;border:1px solid rgba(123,26,26,.18)}
+/* requested  = bright cyan (canvas legend) */
+.stop-badge.requested{background:#80DEEA;color:#004D56;border:1px solid rgba(0,77,86,.18)}
+/* suggestions = light periwinkle blue (canvas legend) */
+.stop-badge.suggestion{background:#BBDEFB;color:#0D3C6E;border:1px solid rgba(13,60,110,.18)}
+/* walk-in only = warm cream (canvas legend) */
+.stop-badge.walk-in{background:#FFF9E6;color:#6B5000;border:1px solid rgba(107,80,0,.18)}
+/* birthday = magenta special */
+.stop-badge.birthday{background:#F50057;color:#fff;border:none}
+/* logistics = soft amber for transport/hotel */
+.stop-badge.logistics{background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
 .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
 .stop-alert{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 10px;background:#FFFBEB;border-radius:var(--radius-sm);border-left:3px solid #F59E0B;font-size:11px;color:#92400E;font-weight:500;line-height:1.4}
 .map-actions{display:flex;gap:5px;margin-top:10px}
@@ -302,7 +322,7 @@ var TRIP = {
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
           notes:'Janu Tokyo manages the transfer directly from the airport. No driver sign to look for — hotel concierge will communicate details. Withdraw yen at the 7-Eleven ATM on arrival.' },
         { time:'19:30', title:'Nakano', sub:'Welcome dinner · Sushi counter',
-          type:'restaurant', badge:'Sushi · Confirmed', ok:true,
+          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
           loc:'Sushi Nakano', addr:'Tokyo', q:'Sushi Nakano Tokyo',
           notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
           alert:'No perfume or fragrance at the counter' }
@@ -315,14 +335,14 @@ var TRIP = {
       notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
       stops:[
         { time:'12:30', title:'Pizza Seirinkan', sub:'Lunch · Legendary wood-fired pizza',
-          type:'restaurant', badge:'Walk-in',
+          type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Seirinkan', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
           notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo\'s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
         { time:'19:30', title:'Tempura Tenko', sub:'Dinner · Counter tempura',
-          type:'restaurant', badge:'Tempura · Confirmed', ok:true,
+          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
           loc:'Tempura Tenko', addr:'Tokyo', q:'Tempura Tenko Tokyo',
           notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
           alert:'No fragrance at the counter' }
@@ -335,7 +355,7 @@ var TRIP = {
       notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
       stops:[
         { time:'12:00', title:'Tiffany Blue Box Cafe', sub:'Lunch · Omotesando · Self-booked',
-          type:'restaurant', badge:'Self-booked', sb:true,
+          type:'restaurant', badge:'Self-booked', badgeType:'self-booked',
           loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
           notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
           alert:'Self-booked — confirm your reservation directly with Tiffany' },
@@ -343,7 +363,7 @@ var TRIP = {
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
         { time:'19:30', title:'J-Free', sub:'Dinner · Contemporary fusion',
-          type:'restaurant', badge:'Confirmed', ok:true,
+          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'J-Free Tokyo', addr:'Tokyo', q:'J-Free restaurant Tokyo',
           notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
       ]
@@ -355,7 +375,7 @@ var TRIP = {
       notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centefolia to close the evening.',
       stops:[
         { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Self-booked',
-          type:'activity', badge:'VIP · Self-booked', sb:true,
+          type:'activity', badge:'Self-booked', badgeType:'self-booked',
           loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Omotesando Tokyo fashion district',
           notes:'A curated private tour through Tokyo\'s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
           alert:'Carry cash throughout the day · Confirm meeting point with Joni Waka in advance' },
@@ -363,7 +383,7 @@ var TRIP = {
           type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
           notes:'Lunch venue selected and arranged within the tour.' },
         { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner',
-          type:'bday', badge:'Birthday · Confirmed', bd:true,
+          type:'bday', badge:'Birthday Dinner', badgeType:'birthday',
           loc:'Tokyo', addr:'Tokyo', q:'special dinner Tokyo',
           notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
         { time:'~21:30', title:'Bar Centefolia', sub:'Birthday nightcap · One of Kyoto\'s finest bars',
@@ -378,7 +398,7 @@ var TRIP = {
       notes:'Travel day. Shinkansen to Kyoto this morning — right-hand seats for Mount Fuji views. Settling into Capella Kyoto.',
       stops:[
         { time:'08:00', title:'Shinkansen to Kyoto', sub:'Tokyo Station to Kyoto · Green Car',
-          type:'transport', badge:'Green Car',
+          type:'transport', badge:'Green Car', badgeType:'logistics',
           loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
           notes:'Nozomi service — arrive Kyoto at approximately 10:15. Right-hand seats (C and D) for views of Mount Fuji on a clear morning.' },
         { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district',
@@ -391,7 +411,7 @@ var TRIP = {
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
           notes:'Explore Gion\'s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher\'s Walk follows a canal lined with cherry trees.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'Confirmed', ok:true,
+          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
           loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -403,7 +423,7 @@ var TRIP = {
       notes:'Full day with Ryan Durning — Kyoto\'s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
       stops:[
         { time:'09:00', title:'Full-day Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
-          type:'activity', badge:'Private Guide: Ryan Durning',
+          type:'activity', badge:'Self-booked', badgeType:'self-booked',
           loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
           notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher\'s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
           alert:'Self-booked · Confirm meeting point with Ryan in advance' },
@@ -411,7 +431,7 @@ var TRIP = {
           type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
           notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
         { time:'19:00', title:'OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
-          type:'restaurant', badge:'Confirmed · Aged Wagyu', ok:true,
+          type:'restaurant', badge:'HC Confirmed', badgeType:'confirmed',
           loc:'Oka Kyoto', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
           notes:'One of the top wagyu restaurants in Kyoto. The chef\'s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
           alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
@@ -430,11 +450,11 @@ var TRIP = {
           type:'hotel', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
           notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower — extraordinary views over the Imperial Palace Gardens. One of the world\'s most celebrated city hotels.' },
         { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
-          type:'restaurant', badge:'Walk-in',
+          type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Menya Shichisai', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'Confirmed', ok:true,
+          type:'restaurant', badge:'Walk-in',
           loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -446,7 +466,7 @@ var TRIP = {
       notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
       stops:[
         { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World\'s largest fish market',
-          type:'market', badge:'Confirmed', ok:true,
+          type:'market', badge:'HC Confirmed', badgeType:'confirmed',
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
           notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan\'s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
           alert:'Comfortable closed shoes required · Follow your guide at all times' },
@@ -457,7 +477,7 @@ var TRIP = {
           type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
           notes:'Ginza and Hibiya Park are adjacent to Aman Tokyo. The Aman Spa is worth booking in advance for this afternoon.' },
         { time:'19:30', title:'Dinner', sub:'Final Tokyo evening · Happy Camper confirmed',
-          type:'restaurant', badge:'Confirmed', ok:true,
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Ginza',
           notes:'Confirmed by Happy Camper. A fitting final evening. Exact venue confirmed prior to travel.' }
       ]
@@ -593,7 +613,7 @@ var ICONS={flight:'✈️',transport:'🚄',hotel:'🏨',restaurant:'🍽️',ac
 /* ── RENDER STOP ─────────────────────────────────────────────── */
 function renderStop(stop,di,si){
   var icon=ICONS[stop.type]||'📍';
-  var bc=stop.bd?'bd':stop.ok?'ok':stop.sb?'sb':'';
+  var bc=stop.badgeType||'';
   var badge=stop.badge?'<span class="stop-badge '+bc+'">'+esc(stop.badge)+'</span>':'';
   var isBday=stop.type==='bday';
   return '<div class="stop-item">'
@@ -629,6 +649,13 @@ function renderItinerary(){
     +'<span class="banner-chip bday">🎂 Birthday · 5 May</span>'
     +'<span class="banner-chip">🥩 OKA Confirmed</span>'
     +'</div></div>'
+    +'<div class="booking-legend">'
+    +'<span class="bl-item"><span class="bl-dot confirmed"></span>HC Confirmed</span>'
+    +'<span class="bl-item"><span class="bl-dot self-booked"></span>Self-booked</span>'
+    +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
+    +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
+    +'<span class="bl-item"><span class="bl-dot suggestion"></span>Suggestion</span>'
+    +'</div>'
     +'<div class="section-label">Daily Itinerary</div>';
 
   TRIP.days.forEach(function(day,idx){
