@@ -85,6 +85,7 @@ body{display:flex;flex-direction:column}
 .bl-dot.walk-in{background:#FFF9E6;border:1px solid rgba(107,80,0,.3)}
 .bl-dot.requested{background:#80DEEA;border:1px solid rgba(0,77,86,.3)}
 .bl-dot.suggestion{background:#BBDEFB;border:1px solid rgba(13,60,110,.3)}
+.bl-dot.tbd{background:#F1F3F4;border:1px solid rgba(95,99,104,.3)}
 
 /* ── DAY CARDS ── */
 .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
@@ -318,9 +319,9 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Arrival day. Pick-up handled by the hotel directly. Settle in — dinner tonight is the only commitment.',
       stops:[
-        { time:'', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo', badge:'Logistics', badgeType:'logistics',
+        { time:'15:05', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo', badge:'Logistics', badgeType:'logistics',
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
-          notes:'Janu Tokyo manages the transfer directly from the airport. No driver sign to look for — hotel concierge will communicate details. Withdraw yen at the 7-Eleven ATM on arrival.' },
+          notes:'Arrival HND 15:05. Pick-up handled directly by Janu Tokyo — hotel arranges transfer. No driver sign needed. Withdraw yen at the 7-Eleven ATM on arrival.' },
         { time:'19:30', title:'Welcome Dinner', sub:'Welcome dinner · Sushi counter',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Restaurant', addr:'Tokyo', q:'Sushi Nakano Tokyo',
@@ -354,8 +355,8 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
       stops:[
-        { time:'12:00', title:'Lunch', sub:'Lunch · Omotesando · Self-booked',
-          type:'restaurant', badge:'Self-booked', badgeType:'self-booked',
+        { time:'12:00', title:'Lunch', sub:'Café experience · Omotesando',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
           notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
           alert:'Self-booked — confirm your reservation directly with Tiffany' },
@@ -363,7 +364,7 @@ var TRIP = {
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
         { time:'19:30', title:'Dinner', sub:'Dinner · Contemporary fusion',
-          type:'restaurant', badge:'Requested', badgeType:'requested',
+          type:'restaurant', badge:'TBD', badgeType:'tbd',
           loc:'Restaurant', addr:'Tokyo', q:'J-Free restaurant Tokyo',
           notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
       ]
@@ -372,22 +373,22 @@ var TRIP = {
     {
       date:'2026-05-05', dayNum:4, weekday:'Tuesday 5 May', city:'Tokyo',
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:true,
-      notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centefolia to close the evening.',
+      notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centifolia to close the evening.',
       stops:[
         { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Self-booked',
-          type:'activity', badge:'Self-booked', badgeType:'self-booked',
+          type:'activity', badge:'Confirmed', badgeType:'confirmed',
           loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Omotesando Tokyo fashion district',
           notes:'A curated private tour through Tokyo’s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
           alert:'Carry cash throughout the day · Confirm meeting point with Joni Waka in advance' },
         { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme', badge:'Confirmed', badgeType:'confirmed',
           type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
           notes:'Lunch venue selected and arranged within the tour.' },
-        { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner', badge:'Birthday', badgeType:'birthday',
+        { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner', badge:'Birthday Dinner', badgeType:'birthday',
           type:'bday',
           loc:'Tokyo', addr:'Tokyo', q:'special dinner Tokyo',
           notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
-        { time:'~21:30', title:'After Dinner Bar', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Suggestion', badgeType:'suggestion',
-          type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centefolia Tokyo cocktail',
+        { time:'~21:30', title:'After Dinner Bar', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Requested', badgeType:'requested',
+          type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centifolia Tokyo cocktail',
           notes:'A perfect close to the birthday evening.' }
       ]
     },
@@ -398,7 +399,7 @@ var TRIP = {
       notes:'Travel day. Shinkansen to Kyoto this morning — right-hand seats for Mount Fuji views. Settling into Capella Kyoto.',
       stops:[
         { time:'08:00', title:'Shinkansen to Kyoto', sub:'Tokyo Station to Kyoto · Green Car',
-          type:'transport', badge:'Green Car', badgeType:'logistics',
+          type:'transport', badge:'Logistics', badgeType:'logistics',
           loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
           notes:'Nozomi service — arrive Kyoto at approximately 10:15. Right-hand seats (C and D) for views of Mount Fuji on a clear morning.' },
         { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district', badge:'Logistics', badgeType:'logistics',
@@ -411,7 +412,7 @@ var TRIP = {
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
           notes:'Explore Gion’s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher’s Walk follows a canal lined with cherry trees.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', badge:'TBD', badgeType:'tbd',
           loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -423,7 +424,7 @@ var TRIP = {
       notes:'Full day with Ryan Durning — Kyoto’s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
       stops:[
         { time:'09:00', title:'Full-day Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
-          type:'activity', badge:'Self-booked', badgeType:'self-booked',
+          type:'activity', badge:'Confirmed', badgeType:'confirmed',
           loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
           notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher’s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
           alert:'Self-booked · Confirm meeting point with Ryan in advance' },
@@ -443,7 +444,7 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
       notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
       stops:[
-        { time:'~08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car', badge:'Green Car', badgeType:'logistics',
+        { time:'~08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
           notes:'Nozomi service — arrive Tokyo approximately 10:15.' },
         { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi', badge:'Logistics', badgeType:'logistics',
@@ -454,7 +455,7 @@ var TRIP = {
           loc:'Restaurant', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'Requested', badgeType:'requested',
+          type:'restaurant', badge:'TBD', badgeType:'tbd',
           loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -477,7 +478,7 @@ var TRIP = {
           type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
           notes:'Ginza and Hibiya Park are adjacent to Aman Tokyo. The Aman Spa is worth booking in advance for this afternoon.' },
         { time:'19:30', title:'Dinner', sub:'Final Tokyo evening · Happy Camper confirmed',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', badge:'TBD', badgeType:'tbd',
           loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Ginza',
           notes:'Confirmed by Happy Camper. A fitting final evening. Exact venue confirmed prior to travel.' }
       ]
@@ -491,9 +492,9 @@ var TRIP = {
         { time:'~11:00', title:'Farewell Lunch', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
           type:'restaurant', loc:'Restaurant', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
           notes:'A relaxed final lunch before heading to the airport.' },
-        { time:'~14:00', title:'Departure Transfer', sub:'Aman Tokyo to Airport', badge:'Logistics', badgeType:'logistics',
+        { time:'~14:00', title:'Departure Transfer', sub:'HND · Departs 16:20', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
-          notes:'Private car to airport. Allow 60-90 min to Haneda (HND) or Narita (NRT) depending on traffic. Confirm exact time with Happy Camper.' }
+          notes:'Departure HND 16:20. Allow 90 min from Aman Tokyo — depart hotel by 13:30 at the latest. Private car arranged.' }
       ]
     }
   ]
@@ -651,10 +652,11 @@ function renderItinerary(){
     +'</div></div>'
     +'<div class="booking-legend">'
     +'<span class="bl-item"><span class="bl-dot confirmed"></span>Confirmed</span>'
-    +'<span class="bl-item"><span class="bl-dot self-booked"></span>Self-booked</span>'
-    +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
-    +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
     +'<span class="bl-item"><span class="bl-dot suggestion"></span>Suggestion</span>'
+    +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
+    +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
+    +'<span class="bl-item"><span class="bl-dot tbd"></span>TBD</span>'
+    +'<span class="bl-item"><span class="bl-dot birthday"></span>Birthday</span>'
     +'</div>'
     +'<div class="section-label">Daily Itinerary</div>';
 
