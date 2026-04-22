@@ -366,15 +366,15 @@ var TRIP = {
       notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
       stops:[
         { time:'12:30', title:'Lunch', sub:'Lunch · Legendary wood-fired pizza',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', badge:'Requested', badgeType:'requested',
           loc:'Restaurant', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
           notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
-        { time:'19:30', title:'Dinner', sub:'Dinner · Counter tempura',
+        { time:'19:30', title:'Tempura Motoyoshi', sub:'Counter tempura · Reservation requested',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Restaurant', addr:'Tokyo', q:'Tempura Tenko Tokyo',
+          loc:'Tempura Motoyoshi', addr:'Tokyo', q:'Tempura Motoyoshi Tokyo',
           notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
           alert:'No fragrance at the counter' }
       ]
@@ -435,8 +435,8 @@ var TRIP = {
         { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district', badge:'Logistics', badgeType:'logistics',
           type:'hotel', loc:'Capella Kyoto', addr:'Sanjo Kuromon, Nakagyo Ward, Kyoto', q:'Capella Kyoto',
           notes:'A superlative address in the heart of Kyoto. Nijo Castle, the Kamo River, and Gion all within easy walking distance.' },
-        { time:'~13:00', title:'Market Lunch', sub:'Lunch · Kyoto’s covered food market', badge:'Walk-in', badgeType:'walk-in',
-          type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'Nishiki Market Kyoto',
+        { time:'~13:00', title:'Nishiki Market', sub:'Lunch · Kyoto’s covered food market', badge:'Walk-in', badgeType:'walk-in',
+          type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'https://maps.google.com/?q=Nishiki+Market+Kyoto',
           notes:'Five blocks of Kyoto street food: pickles, tofu, wagyu skewers, grilled seafood. Ten minutes from Capella on foot.' },
         { time:'~15:00', title:'Afternoon in Kyoto', sub:'Gion · Philosopher’s Walk · Kamo River',
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
@@ -463,7 +463,7 @@ var TRIP = {
           notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
         { time:'19:00', title:'Dinner at OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Restaurant', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
+          loc:'Restaurant', addr:'Kyoto', q:'https://maps.app.goo.gl/nC5yg2TWXe2Jp4aR9',
           notes:'One of the top wagyu restaurants in Kyoto. The chef’s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
           alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
       ]
@@ -480,9 +480,9 @@ var TRIP = {
         { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi', badge:'Logistics', badgeType:'logistics',
           type:'hotel', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
           notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower — extraordinary views over the Imperial Palace Gardens. One of the world’s most celebrated city hotels.' },
-        { time:'~13:00', title:'Lunch', sub:'Lunch · Celebrated ramen counter',
+        { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
-          loc:'Restaurant', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
+          loc:'Menya Shichisai', addr:'Tokyo', q:'https://maps.google.com/?q=Menya+Shichisai+Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
           type:'restaurant', badge:'TBD', badgeType:'tbd',
@@ -501,8 +501,8 @@ var TRIP = {
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
           notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan’s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
           alert:'Comfortable closed shoes required · Follow your guide at all times' },
-        { time:'~09:30', title:'Market Visit', sub:'Breakfast and street food', badge:'Walk-in', badgeType:'walk-in',
-          type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'Tsukiji Outer Market Tokyo',
+        { time:'~09:30', title:'Tsukiji Outer Market', sub:'Breakfast and street food', badge:'Walk-in', badgeType:'walk-in',
+          type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'https://maps.google.com/?q=Tsukiji+Outer+Market+Tokyo',
           notes:'A short drive from Toyosu. Tamagoyaki, fresh sushi, grilled seafood. An excellent post-market breakfast stop.' },
         { time:'~11:00', title:'Free Morning', sub:'Ginza · Hibiya · Rest at Aman',
           type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
@@ -519,8 +519,8 @@ var TRIP = {
       hotel:null, hs:'', hq:null, bday:false,
       notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
       stops:[
-        { time:'~11:00', title:'Farewell Lunch', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
-          type:'restaurant', loc:'Restaurant', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
+        { time:'~11:00', title:'Kukuku', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'https://maps.google.com/?q=Kukuku+restaurant+Tokyo',
           notes:'A relaxed final lunch before heading to the airport.' },
         { time:'~14:00', title:'Departure Transfer', sub:'HND · Departs 16:20', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
@@ -580,8 +580,8 @@ function setWxFb(el,city) {
 }
 
 /* ── MAPS ────────────────────────────────────────────────────── */
-function gm(q){return 'https://maps.google.com/?q='+encodeURIComponent(q);}
-function nav(q){return 'https://maps.google.com/maps?daddr='+encodeURIComponent(q)+'&dirflg=d';}
+function gm(q){return q.indexOf('http')===0?q:'https://maps.google.com/?q='+encodeURIComponent(q);}
+function nav(q){return q.indexOf('http')===0?q:'https://maps.google.com/maps?daddr='+encodeURIComponent(q)+'&dirflg=d';}
 
 /* ── TOAST ───────────────────────────────────────────────────── */
 var toastTm;
