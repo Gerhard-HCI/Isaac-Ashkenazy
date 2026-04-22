@@ -318,12 +318,12 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Arrival day. Pick-up handled by the hotel directly. Settle in — dinner tonight is the only commitment.',
       stops:[
-        { time:'', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo',
+        { time:'', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo', badge:'Logistics', badgeType:'logistics',
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
           notes:'Janu Tokyo manages the transfer directly from the airport. No driver sign to look for — hotel concierge will communicate details. Withdraw yen at the 7-Eleven ATM on arrival.' },
-        { time:'19:30', title:'Nakano', sub:'Welcome dinner · Sushi counter',
+        { time:'19:30', title:'Welcome Dinner', sub:'Welcome dinner · Sushi counter',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Sushi Nakano', addr:'Tokyo', q:'Sushi Nakano Tokyo',
+          loc:'Restaurant', addr:'Tokyo', q:'Sushi Nakano Tokyo',
           notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
           alert:'No perfume or fragrance at the counter' }
       ]
@@ -334,16 +334,16 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
       stops:[
-        { time:'12:30', title:'Pizza Seirinkan', sub:'Lunch · Legendary wood-fired pizza',
-          type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
-          loc:'Seirinkan', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
+        { time:'12:30', title:'Lunch', sub:'Lunch · Legendary wood-fired pizza',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+          loc:'Restaurant', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
           notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
-          notes:'The Meguro River walk toward Daikanyama is one of Tokyo\'s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
-        { time:'19:30', title:'Tempura Tenko', sub:'Dinner · Counter tempura',
+          notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
+        { time:'19:30', title:'Dinner', sub:'Dinner · Counter tempura',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Tempura Tenko', addr:'Tokyo', q:'Tempura Tenko Tokyo',
+          loc:'Restaurant', addr:'Tokyo', q:'Tempura Tenko Tokyo',
           notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
           alert:'No fragrance at the counter' }
       ]
@@ -354,7 +354,7 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
       stops:[
-        { time:'12:00', title:'Tiffany Blue Box Cafe', sub:'Lunch · Omotesando · Self-booked',
+        { time:'12:00', title:'Lunch', sub:'Lunch · Omotesando · Self-booked',
           type:'restaurant', badge:'Self-booked', badgeType:'self-booked',
           loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
           notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
@@ -362,9 +362,9 @@ var TRIP = {
         { time:'~13:30', title:'Omotesando & Aoyama', sub:'Shopping · Architecture',
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
-        { time:'19:30', title:'J-Free', sub:'Dinner · Contemporary fusion',
+        { time:'19:30', title:'Dinner', sub:'Dinner · Contemporary fusion',
           type:'restaurant', badge:'Requested', badgeType:'requested',
-          loc:'J-Free Tokyo', addr:'Tokyo', q:'J-Free restaurant Tokyo',
+          loc:'Restaurant', addr:'Tokyo', q:'J-Free restaurant Tokyo',
           notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
       ]
     },
@@ -377,17 +377,17 @@ var TRIP = {
         { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Self-booked',
           type:'activity', badge:'Self-booked', badgeType:'self-booked',
           loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Omotesando Tokyo fashion district',
-          notes:'A curated private tour through Tokyo\'s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
+          notes:'A curated private tour through Tokyo’s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
           alert:'Carry cash throughout the day · Confirm meeting point with Joni Waka in advance' },
-        { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme',
+        { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme', badge:'Confirmed', badgeType:'confirmed',
           type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
           notes:'Lunch venue selected and arranged within the tour.' },
-        { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner',
-          type:'bday', badge:'Birthday Dinner', badgeType:'birthday',
+        { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner', badge:'Birthday', badgeType:'birthday',
+          type:'bday',
           loc:'Tokyo', addr:'Tokyo', q:'special dinner Tokyo',
           notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
-        { time:'~21:30', title:'Bar Centefolia', sub:'Birthday nightcap · One of Kyoto\'s finest bars',
-          type:'bar', loc:'Bar Centefolia', addr:'Tokyo', q:'Bar Centefolia Tokyo cocktail',
+        { time:'~21:30', title:'After Dinner Bar', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Suggestion', badgeType:'suggestion',
+          type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centefolia Tokyo cocktail',
           notes:'A perfect close to the birthday evening.' }
       ]
     },
@@ -401,15 +401,15 @@ var TRIP = {
           type:'transport', badge:'Green Car', badgeType:'logistics',
           loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
           notes:'Nozomi service — arrive Kyoto at approximately 10:15. Right-hand seats (C and D) for views of Mount Fuji on a clear morning.' },
-        { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district',
+        { time:'~10:30', title:'Check-in — Capella Kyoto', sub:'Two nights · Sanjo-Kuromon district', badge:'Logistics', badgeType:'logistics',
           type:'hotel', loc:'Capella Kyoto', addr:'Sanjo Kuromon, Nakagyo Ward, Kyoto', q:'Capella Kyoto',
           notes:'A superlative address in the heart of Kyoto. Nijo Castle, the Kamo River, and Gion all within easy walking distance.' },
-        { time:'~13:00', title:'Nishiki Market', sub:'Lunch · Kyoto\'s covered food market',
+        { time:'~13:00', title:'Market Lunch', sub:'Lunch · Kyoto’s covered food market', badge:'Walk-in', badgeType:'walk-in',
           type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'Nishiki Market Kyoto',
           notes:'Five blocks of Kyoto street food: pickles, tofu, wagyu skewers, grilled seafood. Ten minutes from Capella on foot.' },
-        { time:'~15:00', title:'Afternoon in Kyoto', sub:'Gion · Philosopher\'s Walk · Kamo River',
+        { time:'~15:00', title:'Afternoon in Kyoto', sub:'Gion · Philosopher’s Walk · Kamo River',
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
-          notes:'Explore Gion\'s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher\'s Walk follows a canal lined with cherry trees.' },
+          notes:'Explore Gion’s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher’s Walk follows a canal lined with cherry trees.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
           loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
@@ -420,20 +420,20 @@ var TRIP = {
     {
       date:'2026-05-07', dayNum:6, weekday:'Thursday 7 May', city:'Kyoto',
       hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
-      notes:'Full day with Ryan Durning — Kyoto\'s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
+      notes:'Full day with Ryan Durning — Kyoto’s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
       stops:[
         { time:'09:00', title:'Full-day Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
           type:'activity', badge:'Self-booked', badgeType:'self-booked',
           loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
-          notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher\'s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
+          notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher’s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
           alert:'Self-booked · Confirm meeting point with Ryan in advance' },
-        { time:'~13:00', title:'Tour Lunch', sub:'Ryan\'s selection',
+        { time:'~13:00', title:'Tour Lunch', sub:'Ryan’s selection', badge:'Confirmed', badgeType:'confirmed',
           type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
           notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
-        { time:'19:00', title:'OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
+        { time:'19:00', title:'Dinner', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Oka Kyoto', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
-          notes:'One of the top wagyu restaurants in Kyoto. The chef\'s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
+          loc:'Restaurant', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
+          notes:'One of the top wagyu restaurants in Kyoto. The chef’s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
           alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
       ]
     },
@@ -443,18 +443,18 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
       notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
       stops:[
-        { time:'~08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car',
+        { time:'~08:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car', badge:'Green Car', badgeType:'logistics',
           type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
           notes:'Nozomi service — arrive Tokyo approximately 10:15.' },
-        { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi',
+        { time:'~11:00', title:'Check-in — Aman Tokyo', sub:'Two nights · Otemachi', badge:'Logistics', badgeType:'logistics',
           type:'hotel', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
-          notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower — extraordinary views over the Imperial Palace Gardens. One of the world\'s most celebrated city hotels.' },
-        { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
+          notes:'The Aman Tokyo occupies the upper floors of the Otemachi Tower — extraordinary views over the Imperial Palace Gardens. One of the world’s most celebrated city hotels.' },
+        { time:'~13:00', title:'Lunch', sub:'Lunch · Celebrated ramen counter',
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
-          loc:'Menya Shichisai', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
+          loc:'Restaurant', addr:'Tokyo', q:'Menya Shichisai ramen Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'Walk-in',
+          type:'restaurant', badge:'Requested', badgeType:'requested',
           loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
           notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
       ]
@@ -465,12 +465,12 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
       notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
       stops:[
-        { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World\'s largest fish market',
+        { time:'06:00', title:'Fish Market', sub:'Dawn expedition · World’s largest fish market',
           type:'market', badge:'Confirmed', badgeType:'confirmed',
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
-          notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan\'s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
+          notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan’s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
           alert:'Comfortable closed shoes required · Follow your guide at all times' },
-        { time:'~09:30', title:'Tsukiji Outer Market', sub:'Breakfast and street food',
+        { time:'~09:30', title:'Market Visit', sub:'Breakfast and street food', badge:'Walk-in', badgeType:'walk-in',
           type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'Tsukiji Outer Market Tokyo',
           notes:'A short drive from Toyosu. Tamagoyaki, fresh sushi, grilled seafood. An excellent post-market breakfast stop.' },
         { time:'~11:00', title:'Free Morning', sub:'Ginza · Hibiya · Rest at Aman',
@@ -488,10 +488,10 @@ var TRIP = {
       hotel:null, hs:'', hq:null, bday:false,
       notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
       stops:[
-        { time:'~11:00', title:'Kukuku', sub:'Farewell lunch',
-          type:'restaurant', loc:'Kukuku Tokyo', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
+        { time:'~11:00', title:'Farewell Lunch', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', loc:'Restaurant', addr:'Tokyo', q:'Kukuku restaurant Tokyo',
           notes:'A relaxed final lunch before heading to the airport.' },
-        { time:'~14:00', title:'Departure Transfer', sub:'Aman Tokyo to Airport',
+        { time:'~14:00', title:'Departure Transfer', sub:'Aman Tokyo to Airport', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
           notes:'Private car to airport. Allow 60-90 min to Haneda (HND) or Narita (NRT) depending on traffic. Confirm exact time with Happy Camper.' }
       ]
@@ -736,7 +736,7 @@ function renderUtilities(){
     +'<div class="section-label">Quick Reference</div>'
     +'<div class="util-card"><ul class="info-list">'
     +'<li><span class="info-emoji">💴</span><div class="info-text"><strong>Cash is essential</strong>Carry 50,000–70,000 ¥/person. ATMs at 7-Eleven and Japan Post accept foreign cards.</div></li>'
-    +'<li><span class="info-emoji">🏖️</span><div class="info-text"><strong>Golden Week — 3–6 May</strong>Japan\'s biggest public holiday. Parks busy — all restaurants and private experiences unaffected.</div></li>'
+    +'<li><span class="info-emoji">🏖️</span><div class="info-text"><strong>Golden Week — 3–6 May</strong>Japan’s biggest public holiday. Parks busy — all restaurants and private experiences unaffected.</div></li>'
     +'<li><span class="info-emoji">📱</span><div class="info-text"><strong>Suica (Mobile Wallet)</strong>Wallet app → tap + → search Suica. Covers Tokyo and Kyoto subway and bus.</div></li>'
     +'<li><span class="info-emoji">⏰</span><div class="info-text"><strong>Time Zone: JST = UTC+9</strong>No daylight saving. From CEST: +7 hours.</div></li>'
     +'<li><span class="info-emoji">🔌</span><div class="info-text"><strong>Electricity: 100V · Type A</strong>European visitors need a voltage converter.</div></li>'
