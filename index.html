@@ -352,9 +352,9 @@ var TRIP = {
         { time:'15:05', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo', badge:'Logistics', badgeType:'logistics',
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
           notes:'Arrival HND 15:05. Pick-up handled directly by Janu Tokyo — hotel arranges transfer. No driver sign needed. Withdraw yen at the 7-Eleven ATM on arrival.' },
-        { time:'19:30', title:'Welcome Dinner', sub:'Welcome dinner · Sushi counter',
+        { time:'19:30', title:'Dinner', sub:'Welcome dinner · Sushi counter',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Restaurant', addr:'Tokyo', q:'Sushi Nakano Tokyo',
+          loc:'Restaurant', addr:'Tokyo', q:'Tokyo',
           notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
           alert:'No perfume or fragrance at the counter' }
       ]
@@ -366,15 +366,15 @@ var TRIP = {
       notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
       stops:[
         { time:'12:30', title:'Lunch', sub:'Lunch · Legendary wood-fired pizza',
-          type:'restaurant', badge:'Requested', badgeType:'requested',
-          loc:'Restaurant', addr:'Nakameguro, Meguro City, Tokyo', q:'Seirinkan pizza Nakameguro Tokyo',
+          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+          loc:'Restaurant', addr:'Nakameguro, Meguro City, Tokyo', q:'Tokyo',
           notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
-        { time:'19:30', title:'Tempura Motoyoshi', sub:'Counter tempura · Reservation requested',
+        { time:'19:30', title:'Dinner', sub:'Dinner',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Tempura Motoyoshi', addr:'Tokyo', q:'Tempura Motoyoshi Tokyo',
+          loc:'Tokyo', addr:'Tokyo', q:'Tokyo',
           notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
           alert:'No fragrance at the counter' }
       ]
@@ -387,7 +387,7 @@ var TRIP = {
       stops:[
         { time:'12:00', title:'Lunch', sub:'Café experience · Omotesando',
           type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tiffany Blue Box Cafe Tokyo Omotesando',
+          loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tokyo',
           notes:'The Tokyo outpost of the famous Tiffany Blue Box experience.',
           alert:'Self-booked — confirm your reservation directly with Tiffany' },
         { time:'~13:30', title:'Omotesando & Aoyama', sub:'Shopping · Architecture',
@@ -519,8 +519,8 @@ var TRIP = {
       hotel:null, hs:'', hq:null, bday:false,
       notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
       stops:[
-        { time:'~11:00', title:'Kukuku', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
-          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'https://maps.google.com/?q=Kukuku+restaurant+Tokyo',
+        { time:'~11:00', title:'Lunch', sub:'Farewell lunch', badge:'Suggestion', badgeType:'suggestion',
+          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'Tokyo',
           notes:'A relaxed final lunch before heading to the airport.' },
         { time:'~14:00', title:'Departure Transfer', sub:'HND · Departs 16:20', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
@@ -648,7 +648,7 @@ function renderStop(stop,di,si){
   var bc=stop.badgeType||'';
   var badge=stop.badge?'<span class="stop-badge '+bc+'">'+esc(stop.badge)+'</span>':'';
   var isBday=stop.type==='bday';
-  var isConfirmed = (stop.badgeType === 'confirmed' || stop.badgeType === 'logistics' || stop.badgeType === 'birthday');
+  var isConfirmed = (stop.badgeType === 'confirmed' || stop.badgeType === 'logistics' || stop.badgeType === 'birthday' || stop.badgeType === 'walk-in' || stop.badgeType === 'requested' || stop.badgeType === 'self-booked');
   var mapHTML = isConfirmed
     ? '<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
       +'<a href="'+nav(stop.q)+'" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
