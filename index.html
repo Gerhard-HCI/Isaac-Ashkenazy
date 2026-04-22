@@ -23,18 +23,18 @@
       --font-sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     }
     /* ── HEADER ── */
-    .hdr-top{display:flex;align-items:center;padding:10px 14px 8px;gap:6px}
-    .hdr-left{flex:1;display:flex;align-items:center;gap:8px;min-width:0;overflow:hidden}
-    .hdr-flag{font-size:18px;flex-shrink:0}
-    .hdr-dest{font-family:var(--font-serif);font-size:15px;font-weight:300;letter-spacing:.4px;color:#fff;white-space:nowrap}
-    .hdr-hc{font-size:8.5px;color:rgba(255,255,255,.40);letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
-    .hdr-mid{flex:1;text-align:center;min-width:0;padding:0 4px}
-    .hdr-name{font-family:var(--font-serif);font-size:19px;font-weight:300;letter-spacing:.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .hdr-name2{font-size:8.5px;color:rgba(255,255,255,.45);letter-spacing:1.4px;text-transform:uppercase;margin-top:3px}
-    .hdr-right{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0}
-    #jst-clock{font-family:'SF Mono','Menlo',monospace;font-size:15px;font-weight:300;letter-spacing:1px;color:#fff;display:block;text-align:right;white-space:nowrap}
+    .hdr-top{display:flex;align-items:center;justify-content:space-between;padding:8px 14px 4px}
+    .hdr-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .hdr-flag{font-size:17px;flex-shrink:0}
+    .hdr-dest{font-family:var(--font-serif);font-size:14px;font-weight:300;letter-spacing:.4px;color:#fff;white-space:nowrap}
+    .hdr-hc{font-size:8px;color:rgba(255,255,255,.40);letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
+    .hdr-names{text-align:center;padding:0 14px 7px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .hdr-name{font-family:var(--font-serif);font-size:19px;font-weight:300;letter-spacing:.6px;color:#fff;line-height:1.15}
+    .hdr-name2{font-size:8.5px;color:rgba(255,255,255,.45);letter-spacing:1.4px;text-transform:uppercase;margin-top:2px}
+    .hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    #jst-clock{font-family:'SF Mono','Menlo',monospace;font-size:14px;font-weight:300;letter-spacing:1px;color:#fff;display:block;text-align:right;white-space:nowrap}
     #trip-day-label{font-size:8.5px;color:rgba(255,255,255,.38);letter-spacing:.4px;margin-top:1px;display:block;text-align:right;white-space:nowrap}
-    #hc-logo{display:block;height:38px;width:auto;flex-shrink:0;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
+    #hc-logo{display:block;height:34px;width:auto;flex-shrink:0;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
     body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);line-height:1.55;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -279,17 +279,17 @@ body{display:flex;flex-direction:column}
         <div class="hdr-hc">Happy Camper</div>
       </div>
     </div>
-    <div class="hdr-mid">
-      <div class="hdr-name">Isaac Ashkenazy</div>
-      <div class="hdr-name2">Emmanuelle Zaoui</div>
-    </div>
     <div class="hdr-right">
       <div>
         <span id="jst-clock">--:--</span>
         <span id="trip-day-label">Japan Standard Time</span>
       </div>
-      <img id="hc-logo" alt="Happy Camper" height="40">
+      <img id="hc-logo" alt="Happy Camper" height="34">
     </div>
+  </div>
+  <div class="hdr-names">
+    <div class="hdr-name">Isaac Ashkenazy</div>
+    <div class="hdr-name2">Emmanuelle Zaoui</div>
   </div>
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
