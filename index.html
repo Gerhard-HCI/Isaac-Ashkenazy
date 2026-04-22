@@ -180,6 +180,7 @@ body{display:flex;flex-direction:column}
 .map-actions{display:flex;gap:5px;margin-top:10px}
 .map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;min-height:34px;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .map-btn:active{transform:scale(.96)}
+.map-btn.map-disabled{color:var(--border);cursor:default;background:var(--border-lt);border-color:var(--border-lt);pointer-events:none;opacity:.45}
 .map-btn.mp{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:600}
 
 /* ── UTILITIES ── */
@@ -207,6 +208,33 @@ body{display:flex;flex-direction:column}
 .diet-no{background:#FFEBEE;color:#B71C1C}
 
 /* ── EMERGENCY ── */
+/* ── IDEAS ── */
+.ideas-banner{background:linear-gradient(135deg,#2D1B69 0%,#1A0F3C 100%);border-radius:var(--radius);padding:22px 20px 18px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+.ideas-banner::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
+.ideas-banner h2{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:.8px;margin-bottom:4px;position:relative}
+.ideas-banner p{font-size:12px;opacity:.65;position:relative}
+.idea-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);border:1px solid var(--border-lt);overflow:hidden;transition:box-shadow .15s}
+.idea-card:active{box-shadow:var(--shadow-lg)}
+.idea-header{display:flex;align-items:center;gap:14px;padding:16px}
+.idea-emoji{font-size:32px;flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-md);background:var(--cream)}
+.idea-info{flex:1;min-width:0}
+.idea-title{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3}
+.idea-meta{font-size:11px;color:var(--ink-4);margin-top:3px;display:flex;align-items:center;gap:8px}
+.idea-city{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:5px}
+.idea-status{font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:5px;white-space:nowrap}
+.idea-status.exploring{background:#EDE7F6;color:#4527A0;border:1px solid rgba(69,39,160,.18)}
+.idea-body{padding:0 16px 16px}
+.idea-desc{font-size:12px;color:var(--ink-2);line-height:1.6;padding-top:4px}
+.idea-divider{height:1px;background:var(--border-lt);margin:0 16px}
+.ideas-notice{display:flex;gap:14px;background:#FFFBF0;border:1px solid rgba(176,124,34,.25);border-left:4px solid var(--gold);border-radius:var(--radius-md);padding:16px;margin-bottom:14px}
+.notice-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.notice-title{font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.notice-text{font-size:12.5px;color:var(--ink-2);line-height:1.65}
+.notice-text em{font-style:italic;color:var(--ink);font-weight:500}
+.notice-text strong{color:var(--ink);font-weight:700}
+.add-idea-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border:2px dashed var(--border);border-radius:var(--radius);background:none;color:var(--ink-4);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;margin-top:4px}
+.add-idea-btn:active{border-color:var(--navy);color:var(--navy)}
+
 .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
 .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
 .emergency-banner p{font-size:12px;opacity:.75}
@@ -265,6 +293,7 @@ body{display:flex;flex-direction:column}
   </div>
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
+    <button class="tab-btn" data-tab="ideas">Ideas</button>
     <button class="tab-btn" data-tab="utilities">Utilities</button>
     <button class="tab-btn" data-tab="emergency">Emergency</button>
   </nav>
@@ -272,6 +301,7 @@ body{display:flex;flex-direction:column}
 
 <div id="main-content">
   <div id="tab-itinerary" class="tab-panel active"></div>
+  <div id="tab-ideas" class="tab-panel"></div>
   <div id="tab-utilities" class="tab-panel"></div>
   <div id="tab-emergency" class="tab-panel"></div>
 </div>
@@ -375,19 +405,19 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:true,
       notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centifolia to close the evening.',
       stops:[
-        { time:'10:00', title:'Joni Waka VIP Fashion Tour', sub:'Private · Full day · Self-booked',
+        { time:'10:00', title:'Joni Waka VIP Tour', sub:'Private · Full day · Self-booked',
           type:'activity', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Omotesando Tokyo fashion district',
+          loc:'Tokyo (Joni Waka confirms meeting point)', addr:'Tokyo', q:'Janu Tokyo Azabudai Hills',
           notes:'A curated private tour through Tokyo’s most exclusive fashion landscape. Yohji Yamamoto, Comme des Garcons, Maison Margiela and independent Japanese designers. VIP access to showrooms not open to the public.',
           alert:'Carry cash throughout the day · Confirm meeting point with Joni Waka in advance' },
         { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme', badge:'Confirmed', badgeType:'confirmed',
-          type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'lunch restaurant Omotesando Tokyo',
+          type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'Janu Tokyo Azabudai Hills',
           notes:'Lunch venue selected and arranged within the tour.' },
         { time:'19:30', title:'Birthday Dinner', sub:'Special celebration dinner', badge:'Birthday Dinner', badgeType:'birthday',
           type:'bday',
           loc:'Tokyo', addr:'Tokyo', q:'special dinner Tokyo',
           notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
-        { time:'22:30', title:'After Dinner Bar', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Confirmed', badgeType:'confirmed',
+        { time:'22:30', title:'Bar Centifolia', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Confirmed', badgeType:'confirmed',
           type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centifolia Tokyo cocktail',
           notes:'A perfect close to the birthday evening.' }
       ]
@@ -423,15 +453,15 @@ var TRIP = {
       hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
       notes:'Full day with Ryan Durning — Kyoto’s finest private guide. OKA dinner at 19:00 is the centrepiece of the evening.',
       stops:[
-        { time:'09:00', title:'Full-day Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
+        { time:'09:00', title:'Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
           type:'activity', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Kyoto', addr:'Kyoto', q:'Kinkaku-ji Golden Pavilion Kyoto',
+          loc:'Kyoto', addr:'Kyoto', q:'Capella Kyoto',
           notes:'Ryan — born and raised in Kyoto, speaks excellent English. Option A: Kinkaku-ji, Philosopher’s Walk, Nanzen-ji, Gion at dusk. Option B: Nara (45 min by train) — Todai-ji temple, largest bronze Buddha in Japan, freely roaming deer. Share your preference with Ryan the evening before.',
           alert:'Self-booked · Confirm meeting point with Ryan in advance' },
         { time:'~13:00', title:'Tour Lunch', sub:'Ryan’s selection', badge:'Confirmed', badgeType:'confirmed',
-          type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'lunch restaurant Kyoto',
+          type:'restaurant', loc:'Kyoto (Ryan confirms)', addr:'Kyoto', q:'Capella Kyoto',
           notes:'Ryan selects a neighbourhood restaurant — excellent karaage or omurice, dishes Kyoto executes with extraordinary care.' },
-        { time:'19:00', title:'Dinner', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
+        { time:'19:00', title:'Dinner at OKA', sub:'Dinner · 2 guests · Aged wagyu · 19:00 sharp',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Restaurant', addr:'Kyoto', q:'Oka wagyu restaurant Kyoto',
           notes:'One of the top wagyu restaurants in Kyoto. The chef’s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
@@ -466,7 +496,7 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
       notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
       stops:[
-        { time:'06:00', title:'Fish Market', sub:'Dawn expedition · World’s largest fish market',
+        { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World’s largest fish market',
           type:'market', badge:'Confirmed', badgeType:'confirmed',
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
           notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan’s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
@@ -561,6 +591,7 @@ function showToast(msg){
   clearTimeout(toastTm);
   toastTm=setTimeout(function(){el.classList.remove('show');},2200);
 }
+window.ideaSuggest=function(){showToast('Contact Happy Camper to suggest an idea');};
 window.copyAddr=function(di,si){
   var stop=TRIP.days[di].stops[si];
   var txt=(stop.addr&&stop.addr!=='Tokyo'&&stop.addr!=='Kyoto')?stop.addr:stop.loc;
@@ -617,6 +648,14 @@ function renderStop(stop,di,si){
   var bc=stop.badgeType||'';
   var badge=stop.badge?'<span class="stop-badge '+bc+'">'+esc(stop.badge)+'</span>':'';
   var isBday=stop.type==='bday';
+  var isConfirmed = (stop.badgeType === 'confirmed' || stop.badgeType === 'logistics' || stop.badgeType === 'birthday');
+  var mapHTML = isConfirmed
+    ? '<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
+      +'<a href="'+nav(stop.q)+'" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
+      +'<button class="map-btn" onclick="copyAddr('+di+','+si+')">&#10063; Copy</button>'
+    : '<span class="map-btn map-disabled" title="Available once confirmed">📍</span>'
+      +'<span class="map-btn map-disabled" title="Available once confirmed">🧭</span>'
+      +'<span class="map-btn map-disabled" title="Available once confirmed">&#10063;</span>';
   return '<div class="stop-item">'
     +'<div class="stop-time">'+(stop.time?stop.time.replace('~',''):'')+'</div>'
     +'<div class="stop-dot t-'+(isBday?'bday':stop.type)+'"></div>'
@@ -627,11 +666,8 @@ function renderStop(stop,di,si){
     +'</div>'+badge+'</div>'
     +(stop.notes?'<div class="stop-notes">'+esc(stop.notes)+'</div>':'')
     +(stop.alert?'<div class="stop-alert">&#9888; '+esc(stop.alert)+'</div>':'')
-    +'<div class="map-actions">'
-    +'<a href="'+gm(stop.q)+'" target="_blank" rel="noopener" class="map-btn mp">📍 Maps</a>'
-    +'<a href="'+nav(stop.q)+'" target="_blank" rel="noopener" class="map-btn">🧭 Nav</a>'
-    +'<button class="map-btn" onclick="copyAddr('+di+','+si+')">&#10063; Copy</button>'
-    +'</div></div></div>';
+    +'<div class="map-actions">'+mapHTML+'</div>'
+    +'</div></div>';
 }
 
 /* ── RENDER ITINERARY ────────────────────────────────────────── */
@@ -753,7 +789,7 @@ function renderUtilities(){
     +'</div>'
     +'<div class="util-card" style="background:var(--navy-lt);border-color:rgba(13,40,71,.15)">'
     +'<div class="util-card-title" style="color:var(--navy)">Culinary Access Program</div>'
-    +'<div style="font-size:13px;color:var(--ink-2);line-height:1.6">Program fee: <strong>USD 13,000 (agreed)</strong><br>Covers reservation access, guide coordination, fish market access, and ongoing liaison.<br><br><strong>Excludes:</strong> All food, wine, and restaurant charges — settled directly at cost.</div>'
+    +'<div style="font-size:13px;color:var(--ink-2);line-height:1.6">Program fee: <strong>USD 14,000 (agreed)</strong><br>Covers reservation access, guide coordination, fish market access, and ongoing liaison.<br><br><strong>Excludes:</strong> All food, wine, and restaurant charges — settled directly at cost.</div>'
     +'</div>';
   var jEl=document.getElementById('fx-jpy'),uEl=document.getElementById('fx-usd');
   function fJ(){var v=parseFloat(jEl.value);uEl.value=isNaN(v)?'':(v/FX_RATE).toFixed(2);}
@@ -764,6 +800,81 @@ function renderUtilities(){
 }
 
 /* ── RENDER EMERGENCY ────────────────────────────────────────── */
+var IDEAS = [
+  {
+    emoji: '🏎️',
+    title: 'Mario Kart Touring',
+    city: 'Kyoto',
+    cityClass: 'city-kyoto',
+    status: 'Exploring',
+    desc: 'Street legal go-karts dressed as Mario characters through central Kyoto. Wind through the streets in costume — past temples and along the Kamo River. One of the most surreal and fun experiences Japan offers. Requires an international driving permit.'
+  },
+  {
+    emoji: '🏯',
+    title: 'Sumo Stable Visit',
+    city: 'Tokyo',
+    cityClass: 'city-tokyo',
+    status: 'Exploring',
+    desc: 'Watch the early morning keiko (practice session) at a working sumo stable — one of the rarest experiences available to outside guests in Japan. Strict protocols: no food, drink, or audio; observe in silence. Duration approximately 1h 45min.'
+  },
+  {
+    emoji: '💡',
+    title: 'teamLab Planets',
+    city: 'Tokyo',
+    cityClass: 'city-tokyo',
+    status: 'Exploring',
+    desc: 'One of the world’s most celebrated immersive digital art environments. Water, light, and colour across interconnected rooms. The Toyosu waterfront location. A completely different register from anything else on the itinerary — genuinely extraordinary.'
+  }
+];
+
+function renderIdeas(){
+  var c = document.getElementById('tab-ideas');
+  var html = '<div class="ideas-banner">'
+    +'<h2>✨ Ideas &amp; Possibilities</h2>'
+    +'<p>Experiences we’re exploring for you — not yet confirmed</p>'
+    +'</div>'
+    +'<div class="section-label">Under Consideration</div>'
+  +'<div class="ideas-notice">'
+  +'<div class="notice-icon">💬</div>'
+  +'<div class="notice-body">'
+  +'<div class="notice-title">A note from Happy Camper</div>'
+  +'<div class="notice-text">'
+  +'We are of course very happy to arrange these additional activities. '
+  +'As they fall <em>outside the scope of the initial and accepted proposal</em>, '
+  +'they would be treated as extra services and would incur additional cost. '
+  +'This includes direct out-of-pocket expenses — for example bookings such as Mario Kart, '
+  +'gratuities or gifts for the sumo stable, and similar items — as well as the additional '
+  +'arrangement work, coordination, and time involved on our side.'
+  +'</div>'
+  +'<div class="notice-text" style="margin-top:8px">'
+  +'We are very happy to take care of all of this, but wanted to flag clearly that these '
+  +'extras would be <strong>billed separately</strong> from the original proposal.'
+  +'</div>'
+  +'</div>'
+  +'</div>';
+
+  IDEAS.forEach(function(idea){
+    html += '<div class="idea-card">'
+      +'<div class="idea-header">'
+        +'<div class="idea-emoji">'+idea.emoji+'</div>'
+        +'<div class="idea-info">'
+          +'<div class="idea-title">'+idea.title+'</div>'
+          +'<div class="idea-meta">'
+            +'<span class="idea-city '+idea.cityClass+'">'+idea.city+'</span>'
+            +'<span class="idea-status exploring">'+idea.status+'</span>'
+          +'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="idea-divider"></div>'
+      +'<div class="idea-body"><div class="idea-desc">'+idea.desc+'</div></div>'
+      +'</div>';
+  });
+
+  html += '<button class="add-idea-btn" onclick="ideaSuggest()">＋ Suggest an idea</button>';
+
+  c.innerHTML = html;
+}
+
 function renderEmergency(){
   document.getElementById('tab-emergency').innerHTML=''
     +'<div class="emergency-banner"><h2>Emergency &amp; Contacts</h2><p>Japan has excellent emergency services. Save these numbers.</p></div>'
@@ -790,16 +901,38 @@ function renderEmergency(){
     +'</div>'
     +'<div class="section-label">Useful Phrases</div>'
     +'<div class="util-card"><ul class="info-list">'
-    +'<li><span class="info-emoji">🙏</span><div class="info-text"><strong>Gochisousama deshita</strong>Thank you for the meal — say this after dining</div></li>'
-    +'<li><span class="info-emoji">🚑</span><div class="info-text"><strong>Kyukyusha wo yonde kudasai</strong>Please call an ambulance</div></li>'
-    +'<li><span class="info-emoji">🏥</span><div class="info-text"><strong>Byoin wa doko desu ka?</strong>Where is the hospital?</div></li>'
-    +'<li><span class="info-emoji">👮</span><div class="info-text"><strong>Keisatsu wo yonde kudasai</strong>Please call the police</div></li>'
+    +'<li><span class="info-emoji">🙏</span><div class="info-text"><strong>Arigatou gozaimasu · ありがとうございます</strong>Thank you very much</div></li>'
+    +'<li><span class="info-emoji">😊</span><div class="info-text"><strong>Sumimasen · すみません</strong>Excuse me / Sorry (most useful word in Japan)</div></li>'
+    +'<li><span class="info-emoji">🗣️</span><div class="info-text"><strong>Hai / Iie · はい / いいえ</strong>Yes / No</div></li>'
+    +'<li><span class="info-emoji">🤷</span><div class="info-text"><strong>Wakarimasen · わかりません</strong>I don’t understand</div></li>'
+    +'<li><span class="info-emoji">🇬🇧</span><div class="info-text"><strong>Eigo ga hanasemasu ka? · 英語が話せますか？</strong>Do you speak English?</div></li>'
+    +'<li><span class="info-emoji">📍</span><div class="info-text"><strong>~ wa doko desu ka? · ～はどこですか？</strong>Where is ~? (insert place name)</div></li>'
+    +'<li><span class="info-emoji">🚉</span><div class="info-text"><strong>~ eki wa doko desu ka? · ～駅はどこですか？</strong>Where is ~ station?</div></li>'
+    +'<li><span class="info-emoji">🚕</span><div class="info-text"><strong>~ made onegai shimasu · ～までお願いします</strong>To ~ please (give to taxi driver)</div></li>'
+    +'<li><span class="info-emoji">💴</span><div class="info-text"><strong>Ikura desu ka? · いくらですか？</strong>How much is it?</div></li>'
+    +'<li><span class="info-emoji">💳</span><div class="info-text"><strong>Kaado de haraemasu ka? · カードで払えますか？</strong>Can I pay by card?</div></li>'
+    +'<li><span class="info-emoji">🍽️</span><div class="info-text"><strong>Itadakimasu · いただきます</strong>Said before eating (like bon appétit)</div></li>'
+    +'<li><span class="info-emoji">🙇</span><div class="info-text"><strong>Gochisousama deshita · ごちそうさまでした</strong>Thank you for the meal — always say after dining</div></li>'
+    +'<li><span class="info-emoji">🍶</span><div class="info-text"><strong>Osusume wa nan desu ka? · おすすめは何ですか？</strong>What do you recommend?</div></li>'
+    +'<li><span class="info-emoji">🚫</span><div class="info-text"><strong>~ wa taberaremasen · ～は食べられません</strong>I cannot eat ~ (insert ingredient)</div></li>'
+    +'<li><span class="info-emoji">🏨</span><div class="info-text"><strong>Chekku-in onegai shimasu · チェックインお願いします</strong>Check-in please</div></li>'
+    +'<li><span class="info-emoji">🛍️</span><div class="info-text"><strong>Mite iru dake desu · 見ているだけです</strong>I’m just looking (in a shop)</div></li>'
+    +'<li><span class="info-emoji">📸</span><div class="info-text"><strong>Shashin wo totte mo ii desu ka? · 写真を撮ってもいいですか？</strong>May I take a photo?</div></li>'
+    +'<li><span class="info-emoji">🚻</span><div class="info-text"><strong>Otearai wa doko desu ka? · お手洗いはどこですか？</strong>Where is the toilet?</div></li>'
+    +'<li><span class="info-emoji">📝</span><div class="info-text"><strong>Kore wo kudasai · これをください</strong>I’ll take this one / I’d like this please</div></li>'
+    +'<li><span class="info-emoji">🔄</span><div class="info-text"><strong>Mou ichido onegai shimasu · もう一度お願いします</strong>Please say that again</div></li>'
+    +'<li><span class="info-emoji">🆘</span><div class="info-text"><strong>Tasukete kudasai! · 助けてください！</strong>Please help me!</div></li>'
+    +'<li><span class="info-emoji">🚑</span><div class="info-text"><strong>Kyukyusha wo yonde kudasai · 救急車を呼んでください</strong>Please call an ambulance</div></li>'
+    +'<li><span class="info-emoji">🏥</span><div class="info-text"><strong>Byoin wa doko desu ka? · 病院はどこですか？</strong>Where is the hospital?</div></li>'
+    +'<li><span class="info-emoji">👮</span><div class="info-text"><strong>Keisatsu wo yonde kudasai · 警察を呼んでください</strong>Please call the police</div></li>'
+    +'<li><span class="info-emoji">💊</span><div class="info-text"><strong>Kusuri ga hitsuyou desu · 薬が必要です</strong>I need medicine</div></li>'
     +'</ul></div>';
 }
 
 /* ── INIT ────────────────────────────────────────────────────── */
 function init(){
   renderItinerary();
+  renderIdeas();
   renderUtilities();
   renderEmergency();
   tickClock();
