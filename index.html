@@ -235,6 +235,21 @@ body{display:flex;flex-direction:column}
 .add-idea-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border:2px dashed var(--border);border-radius:var(--radius);background:none;color:var(--ink-4);font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;margin-top:4px}
 .add-idea-btn:active{border-color:var(--navy);color:var(--navy)}
 
+/* ── WISH LIST ── */
+.wishlist-banner{background:linear-gradient(135deg,#4A1942 0%,#2D0F27 100%);border-radius:var(--radius);padding:22px 20px 18px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden}
+.wishlist-banner::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat}
+.wishlist-banner h2{font-family:var(--font-serif);font-size:26px;font-weight:300;letter-spacing:.8px;margin-bottom:4px;position:relative}
+.wishlist-banner p{font-size:12px;opacity:.65;position:relative}
+.wish-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);border:1px solid var(--border-lt);overflow:hidden}
+.wish-row{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.wish-num{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#4A1942,#2D0F27);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wish-info{flex:1;min-width:0}
+.wish-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.2}
+.wish-kanji{font-size:11px;color:var(--ink-3);margin-top:2px}
+.wish-style{font-size:10.5px;color:var(--ink-4);margin-top:2px}
+.wish-actions{display:flex;gap:6px;flex-shrink:0}
+.wish-map-btn{padding:7px 11px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:3px}
+.wish-divider{height:1px;background:var(--border-lt);margin:0}
 .emergency-banner{background:var(--navy);border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:14px;text-align:center}
 .emergency-banner h2{font-family:var(--font-serif);font-size:22px;font-weight:300;letter-spacing:.5px;margin-bottom:4px}
 .emergency-banner p{font-size:12px;opacity:.75}
@@ -294,6 +309,7 @@ body{display:flex;flex-direction:column}
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
     <button class="tab-btn" data-tab="ideas">Ideas</button>
+    <button class="tab-btn" data-tab="wishlist">Wish List</button>
     <button class="tab-btn" data-tab="utilities">Utilities</button>
     <button class="tab-btn" data-tab="emergency">Emergency</button>
   </nav>
@@ -302,6 +318,7 @@ body{display:flex;flex-direction:column}
 <div id="main-content">
   <div id="tab-itinerary" class="tab-panel active"></div>
   <div id="tab-ideas" class="tab-panel"></div>
+  <div id="tab-wishlist" class="tab-panel"></div>
   <div id="tab-utilities" class="tab-panel"></div>
   <div id="tab-emergency" class="tab-panel"></div>
 </div>
@@ -874,6 +891,47 @@ function renderIdeas(){
   c.innerHTML = html;
 }
 
+var WISHLIST = [
+  { name:'Mon Cher Ton Ton', kanji:'モンシェルトントン', style:'Teppanyaki · Tokyo classic', q:'Mon Cher Ton Ton Tokyo teppanyaki' },
+  { name:'Shabuzen', kanji:'しゃぶ禅', style:'Shabu-shabu · Premium wagyu', q:'Shabuzen Tokyo shabu shabu' },
+  { name:'Inakaya', kanji:'いなかや', style:'Robatayaki · Theatrical open-fire grill', q:'Inakaya Tokyo robatayaki' },
+  { name:'Menchirashi Udon', kanji:'めんちらしうどん', style:'Udon · Specialty noodles', q:'Menchirashi Udon Tokyo' },
+  { name:'Ichiran', kanji:'一蘭', style:'Tonkotsu ramen · Solo booth dining', q:'Ichiran ramen Tokyo' },
+  { name:'Benizuru', kanji:'紅鶴', style:'Japanese · Intimate counter', q:'Benizuru Tokyo restaurant' },
+  { name:'Ginza Hachigo', kanji:'銀座 八五', style:'Soba · Michelin · Ginza', q:'Ginza Hachigo Tokyo soba Michelin' },
+  { name:'Sushi Yoshitake', kanji:'鮨 よしたけ', style:'Sushi · ★★★ Michelin · Ginza', q:'Sushi Yoshitake Ginza Tokyo Michelin' },
+  { name:'WAGYUMAFIA', kanji:'和牛マフィア', style:'Wagyu · Exclusive omakase experience', q:'WAGYUMAFIA Tokyo wagyu' },
+  { name:'Pizzeria e Trattoria Marumo', kanji:'ピッツェリア エ トラットリア マルモ', style:'Neapolitan pizza · Tokyo', q:'Pizzeria Trattoria Marumo Tokyo' },
+];
+
+function renderWishlist(){
+  var c = document.getElementById('tab-wishlist');
+  var html = '<div class="wishlist-banner">'
+    +'<h2>&#x1F374; Restaurant Wish List</h2>'
+    +'<p>Tokyo restaurants on our radar — to be explored</p>'
+    +'</div>'
+    +'<div class="section-label">On Our Radar</div>'
+    +'<div class="wish-card">';
+
+  WISHLIST.forEach(function(w, i){
+    if (i > 0) html += '<div class="wish-divider"></div>';
+    html += '<div class="wish-row">'
+      +'<div class="wish-num">'+(i+1)+'</div>'
+      +'<div class="wish-info">'
+        +'<div class="wish-name">'+w.name+'</div>'
+        +'<div class="wish-kanji">'+w.kanji+'</div>'
+        +'<div class="wish-style">'+w.style+'</div>'
+      +'</div>'
+      +'<div class="wish-actions">'
+        +'<a href="'+gm(w.q)+'" target="_blank" rel="noopener" class="wish-map-btn">📍 Maps</a>'
+      +'</div>'
+      +'</div>';
+  });
+
+  html += '</div>';
+  c.innerHTML = html;
+}
+
 function renderEmergency(){
   document.getElementById('tab-emergency').innerHTML=''
     +'<div class="emergency-banner"><h2>Emergency &amp; Contacts</h2><p>Japan has excellent emergency services. Save these numbers.</p></div>'
@@ -933,6 +991,7 @@ function renderEmergency(){
 function init(){
   renderItinerary();
   renderIdeas();
+  renderWishlist();
   renderUtilities();
   renderEmergency();
   tickClock();
