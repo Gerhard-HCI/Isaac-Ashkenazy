@@ -85,7 +85,7 @@ body{display:flex;flex-direction:column}
 .bl-dot.walk-in{background:#FFF9E6;border:1px solid rgba(107,80,0,.3)}
 .bl-dot.requested{background:#80DEEA;border:1px solid rgba(0,77,86,.3)}
 .bl-dot.suggestion{background:#BBDEFB;border:1px solid rgba(13,60,110,.3)}
-.bl-dot.tbd{background:#F1F3F4;border:1px solid rgba(95,99,104,.3)}
+.bl-dot.hcs{background:#F1F3F4;border:1px solid rgba(95,99,104,.3)}
 
 /* ── DAY CARDS ── */
 .day-card{background:var(--white);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--border-lt);animation:cardIn .28s ease both}
@@ -382,10 +382,10 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'A focused culinary day — legendary pizza for lunch, exceptional tempura for dinner.',
       stops:[
-        { time:'12:30', title:'Lunch', sub:'Lunch · Legendary wood-fired pizza',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
+        { time:'12:30', title:'Lunch', sub:'Happy Camper will confirm details closer to travel',
+          type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
           loc:'Restaurant', addr:'Nakameguro, Meguro City, Tokyo', q:'Tokyo',
-          notes:'Susumu Kakinuma — pioneer of serious pizza in Japan. A genuine cult institution that exists entirely on its own terms. No reservations — arrive early.' },
+          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' },
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
@@ -402,17 +402,17 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
       stops:[
-        { time:'12:00', title:'Lunch', sub:'Café experience · Omotesando',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Tokyo',
+        { time:'12:00', title:'Pizza Seirinkan', sub:'Wood-fired pizza · 12:30',
+          type:'restaurant', badge:'Requested', badgeType:'requested',
+          loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Pizza Seirinkan Nakameguro Tokyo',
           notes:'The Tokyo outpost of the famous Tiffany Blue Box experience. Arranged by Happy Camper.' },
         { time:'~13:30', title:'Omotesando & Aoyama', sub:'Shopping · Architecture',
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
-        { time:'19:30', title:'Dinner', sub:'Dinner · Contemporary fusion',
-          type:'restaurant', badge:'TBD', badgeType:'tbd',
-          loc:'Restaurant', addr:'Tokyo', q:'J-Free restaurant Tokyo',
-          notes:'A contemporary restaurant with a relaxed atmosphere — a contrast to the precise counter dining elsewhere in the itinerary.' }
+        { time:'19:30', title:'Dinner', sub:'Happy Camper will confirm details closer to travel',
+          type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
+          loc:'Restaurant', addr:'Tokyo', q:'Tokyo',
+          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' }
       ]
     },
     /* ── D4 Tue 5 May — BIRTHDAY ── */
@@ -429,11 +429,11 @@ var TRIP = {
         { time:'~13:00', title:'Tour Lunch', sub:'Included with Joni Waka programme', badge:'Confirmed', badgeType:'confirmed',
           type:'restaurant', loc:'Tokyo (Joni Waka selects)', addr:'Tokyo', q:'Janu Tokyo Azabudai Hills',
           notes:'Lunch venue selected and arranged within the tour.' },
-        { time:'19:30', title:'Mon Cher Ton Ton', sub:'Birthday dinner · Teppanyaki', badge:'Birthday Dinner', badgeType:'birthday',
+        { time:'19:30', title:'Mon Cher Ton Ton', sub:'Birthday dinner · Teppanyaki · 19:30 · 2 guests', badge:'Confirmed', badgeType:'confirmed',
           type:'bday',
-          loc:'Tokyo', addr:'Tokyo', q:'Mon Cher Ton Ton Tokyo teppanyaki',
-          notes:'A birthday dinner to remember — confirmed by Happy Camper. Exact venue and full details to be shared prior to travel.' },
-        { time:'22:30', title:'Bar Centifolia', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Confirmed', badgeType:'confirmed',
+          loc:'Tokyo', addr:'Tokyo', q:'https://maps.google.com/?q=3-12-2+Roppongi+B1F+Minato-ku+Tokyo',
+          notes:'Reservation confirmed · ID: R22PJC · 2 guests · Kobe beef steak and caviar MIKAKU dinner · Counter seating · 3-12-2 Roppongi B1F, Minato-ku, Tokyo · Tel: 03-3402-1055' },
+        { time:'19:30', title:'Bar Centifolia', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Confirmed', badgeType:'confirmed',
           type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centifolia Tokyo cocktail',
           notes:'A perfect close to the birthday evening.' }
       ]
@@ -457,10 +457,10 @@ var TRIP = {
         { time:'~15:00', title:'Afternoon in Kyoto', sub:'Gion · Philosopher’s Walk · Kamo River',
           type:'activity', loc:'Gion, Kyoto', addr:'Gion, Higashiyama Ward, Kyoto', q:'Gion Kyoto',
           notes:'Explore Gion’s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher’s Walk follows a canal lined with cherry trees.' },
-        { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'TBD', badgeType:'tbd',
-          loc:'Kyoto', addr:'Kyoto', q:'fine dining Kyoto',
-          notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
+        { time:'19:30', title:'Dinner', sub:'Happy Camper will confirm details closer to travel',
+          type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
+          loc:'Kyoto', addr:'Kyoto', q:'Tokyo',
+          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' }
       ]
     },
     /* ── D6 Thu 7 May — OKA ── */
@@ -500,10 +500,10 @@ var TRIP = {
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Menya Shichisai', addr:'Tokyo', q:'https://maps.google.com/?q=Menya+Shichisai+Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
-        { time:'19:30', title:'Dinner', sub:'Happy Camper confirmed · Details to follow',
-          type:'restaurant', badge:'TBD', badgeType:'tbd',
-          loc:'Tokyo', addr:'Tokyo', q:'fine dining Tokyo Otemachi',
-          notes:'Confirmed by Happy Camper. Exact venue confirmed prior to travel.' }
+        { time:'19:30', title:'Dinner', sub:'Happy Camper will confirm details closer to travel',
+          type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
+          loc:'Tokyo', addr:'Tokyo', q:'Tokyo',
+          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' }
       ]
     },
     /* ── D8 Sat 9 May — FISH MARKET ── */
@@ -711,7 +711,7 @@ function renderItinerary(){
     +'<span class="bl-item"><span class="bl-dot suggestion"></span>Suggestion</span>'
     +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
     +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
-    +'<span class="bl-item"><span class="bl-dot tbd"></span>TBD</span>'
+    +'<span class="bl-item"><span class="bl-dot tbd"></span>Happy Camper Selection</span>'
     +'<span class="bl-item"><span class="bl-dot birthday"></span>Birthday</span>'
     +'</div>'
     +'<div class="section-label">Daily Itinerary</div>';
