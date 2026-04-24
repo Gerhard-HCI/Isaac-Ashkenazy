@@ -369,10 +369,10 @@ var TRIP = {
         { time:'15:05', title:'Arrival — Tokyo', sub:'Hotel pick-up arranged · Janu Tokyo', badge:'Logistics', badgeType:'logistics',
           type:'flight', loc:'Haneda Airport', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo',
           notes:'Arrival HND 15:05. Pick-up handled directly by Janu Tokyo — hotel arranges transfer. No driver sign needed. Withdraw yen at the 7-Eleven ATM on arrival.' },
-        { time:'19:30', title:'Nakano', sub:'Sushi counter · 20:00',
+        { time:'19:30', title:'Tempura Ono', sub:'Counter tempura · 20:00',
           type:'restaurant', badge:'Requested', badgeType:'requested',
-          loc:'Restaurant', addr:'Tokyo', q:'https://maps.app.goo.gl/if2saXr5CfeErrdc6',
-          notes:'A refined sushi counter for the first evening. Dietary notes confirmed with chef: no pork, no shellfish for Isaac; no eel, no mackerel for Emmanuelle.',
+          loc:'Restaurant', addr:'Tokyo', q:'Tempura Ono Tokyo',
+          notes:'A legendary tempura counter — each piece fried to order with absolute precision and presented the moment it leaves the oil. Reservation requested.',
           alert:'No perfume or fragrance at the counter' }
       ]
     },
@@ -389,10 +389,10 @@ var TRIP = {
         { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
           type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
           notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
-        { time:'19:30', title:'Dinner', sub:'Dinner',
-          type:'restaurant', badge:'Suggestion', badgeType:'suggestion',
-          loc:'Tokyo', addr:'Tokyo', q:'Tokyo',
-          notes:'Each piece fried to order with precision and presented the moment it leaves the oil.',
+        { time:'19:30', title:'Sushi', sub:'Sushi counter · Evening',
+          type:'restaurant', badge:'Requested', badgeType:'requested',
+          loc:'Tokyo', addr:'Tokyo', q:'sushi restaurant Tokyo',
+          notes:'A sushi counter for the second evening. Details confirmed closer to travel.',
           alert:'No fragrance at the counter' }
       ]
     },
@@ -402,10 +402,14 @@ var TRIP = {
       hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
       notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
       stops:[
+        { time:'09:30', title:'teamLab Borderless', sub:'Immersive digital art · Azabudai Hills',
+          type:'activity', badge:'Confirmed', badgeType:'confirmed',
+          loc:'teamLab Borderless Tokyo', addr:'Azabudai Hills, Minato City, Tokyo', q:'teamLab Borderless Tokyo Azabudai',
+          notes:'teamLab Borderless at Azabudai Hills — the newly reopened immersive digital art world. A completely different register from anything else on the itinerary. Confirmed for 09:30.' },
         { time:'12:00', title:'Pizza Seirinkan', sub:'Wood-fired pizza · 12:30',
-          type:'restaurant', badge:'Requested', badgeType:'requested',
+          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Tiffany Blue Box Cafe Tokyo', addr:'4-3-3 Kita-Aoyama, Minato City, Tokyo', q:'Pizza Seirinkan Nakameguro Tokyo',
-          notes:'The Tokyo outpost of the famous Tiffany Blue Box experience. Arranged by Happy Camper.' },
+          notes:'Susumu Kakinuma — one of the great pioneers of serious pizza in Japan. Traditional wood-fired approach. A genuine Tokyo institution. Confirmed for 12:30.' },
         { time:'~13:30', title:'Omotesando & Aoyama', sub:'Shopping · Architecture',
           type:'shopping', loc:'Omotesando, Tokyo', addr:'Omotesando, Minato City, Tokyo', q:'Omotesando shopping Tokyo',
           notes:'Finest architecture and boutiques along Omotesando-dori. Prada, Comme des Garcons, Issey Miyake, Omotesando Hills.' },
@@ -459,8 +463,8 @@ var TRIP = {
           notes:'Explore Gion’s preserved machiya streets at dusk — Hanamikoji Street is most atmospheric. The Philosopher’s Walk follows a canal lined with cherry trees.' },
         { time:'19:30', title:'Dinner', sub:'Happy Camper will confirm details closer to travel',
           type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
-          loc:'Kyoto', addr:'Kyoto', q:'Tokyo',
-          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' }
+          loc:'Kyoto', addr:'Kyoto', q:'Kyoto',
+          notes:'We are currently selecting the best sushi option for your first evening in Kyoto. Full details will be shared once confirmed.' }
       ]
     },
     /* ── D6 Thu 7 May — OKA ── */
@@ -500,10 +504,10 @@ var TRIP = {
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Menya Shichisai', addr:'Tokyo', q:'https://maps.google.com/?q=Menya+Shichisai+Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
-        { time:'19:30', title:'Dinner', sub:'Happy Camper will confirm details closer to travel',
-          type:'restaurant', badge:'Happy Camper Selection', badgeType:'tbd',
-          loc:'Tokyo', addr:'Tokyo', q:'Tokyo',
-          notes:'We are currently selecting the best option for this meal. Full details will be shared once confirmed.' }
+        { time:'19:30', title:'Hiyama', sub:'Dinner · 19:30',
+          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
+          loc:'Tokyo', addr:'Tokyo', q:'Hiyama restaurant Tokyo',
+          notes:'Confirmed for 19:30.' }
       ]
     },
     /* ── D8 Sat 9 May — FISH MARKET ── */
@@ -527,10 +531,10 @@ var TRIP = {
           type:'activity', badge:'Confirmed', badgeType:'confirmed',
           loc:'Kukuku Wagashi Counter Tokyo', addr:'Tokyo', q:'https://maps.app.goo.gl/ioMGTE3eZtetsvtLA',
           notes:'A confirmed wagashi (traditional Japanese confectionery) tasting experience before departure. A beautiful final taste of Japan.' },
-        { time:'19:30', title:'Wagyu Mafia', sub:'Premium wagyu omakase',
-          type:'restaurant', badge:'Requested', badgeType:'requested',
+        { time:'19:30', title:'WAGYUMAFIA', sub:'The Butcher’s Kitchen · 19:00',
+          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Tokyo', addr:'Tokyo', q:'WAGYUMAFIA Tokyo wagyu',
-          notes:'Confirmed by Happy Camper. A fitting final evening. Exact venue confirmed prior to travel.' }
+          notes:'WAGYUMAFIA The Butcher’s Kitchen. Confirmed for 19:00.' }
       ]
     },
     /* ── D9 Sun 10 May — DEPARTURE ── */
@@ -539,10 +543,10 @@ var TRIP = {
       hotel:null, hs:'', hq:null, bday:false,
       notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
       stops:[
-        { time:'~11:00', title:'Hiyama', sub:'Farewell lunch · 11:30', badge:'Requested', badgeType:'requested',
-          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'Hiyama restaurant Tokyo',
-          notes:'A relaxed final lunch before heading to the airport.' },
-        { time:'11:30', title:'Departure Transfer', sub:'HND · Departs 16:20', badge:'Logistics', badgeType:'logistics',
+        { time:'~11:00', title:'Lunch', sub:'Happy Camper will confirm details closer to travel', badge:'Happy Camper Selection', badgeType:'tbd',
+          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'Tokyo',
+          notes:'We are currently selecting a farewell lunch. Full details will be shared once confirmed.' },
+        { time:'~11:30', title:'Departure Transfer', sub:'HND · Departs 16:20', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
           notes:'Departure HND 16:20. Allow 90 min from Aman Tokyo — depart hotel by 13:30 at the latest. Private car arranged.' }
       ]
