@@ -176,6 +176,8 @@ body{display:flex;flex-direction:column}
 /* logistics = soft amber for transport/hotel */
 .stop-badge.logistics{background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
 .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
+.ticket-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.ticket-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;background:var(--navy);color:#fff;text-decoration:none;-webkit-tap-highlight-color:transparent}
 .stop-alert{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 10px;background:#FFFBEB;border-radius:var(--radius-sm);border-left:3px solid #F59E0B;font-size:11px;color:#92400E;font-weight:500;line-height:1.4}
 .map-actions{display:flex;gap:5px;margin-top:10px}
 .map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:var(--radius-sm);font-size:11px;font-weight:500;min-height:34px;border:1px solid var(--border);background:var(--white);color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -447,10 +449,12 @@ var TRIP = {
       hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
       notes:'Travel day. Shinkansen to Kyoto this morning — right-hand seats for Mount Fuji views. Settling into Capella Kyoto.',
       stops:[
-        { time:'09:00', title:'Shinkansen to Kyoto', sub:'Tokyo Station to Kyoto · Green Car',
+        { time:'09:00', title:'Shinkansen to Kyoto', sub:'NOZOMI 135 · 09:00→11:15 · Green Car · Res# 2275',
           type:'transport', badge:'Logistics', badgeType:'logistics',
           loc:'Tokyo Station', addr:'1-9-1 Marunouchi, Chiyoda City, Tokyo', q:'Tokyo Station Marunouchi',
-          notes:'Nozomi service — arrive Kyoto at approximately 10:15. Right-hand seats (C and D) for views of Mount Fuji on a clear morning.' },
+          notes:'NOZOMI 135 · Tokyo 09:00 → Kyoto 11:15 · Series N700 · Green Car 9 · Seat 11-C and 11-D · 2 adults · Reservation: 2275 (Smart EX) · Right-hand seats for Mount Fuji views on a clear morning.',
+          ticket1:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=41001Yq4qvH800G2tmnj9v00O03pMwkM005PzyEQeY00oMlNk3L400t54M3EoR00tXZfi5gG00jwg1Jr3n00QJdznMnd00JDh',
+          ticket2:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=41001DpGGI7o00SzSNgiZj00LW4ptDHO007PbZEkoK00oMlNk3L400t54M3EoR00tXZfi5gG00jwg1Jr3n00QJdznMKd00JD8' },
         { time:'~13:00', title:'Nishiki Market', sub:'Lunch · Kyoto’s covered food market', badge:'Walk-in', badgeType:'walk-in',
           type:'market', loc:'Nishiki Market', addr:'Nishiki-koji, Nakagyo Ward, Kyoto', q:'https://maps.google.com/?q=Nishiki+Market+Kyoto',
           notes:'Five blocks of Kyoto street food: pickles, tofu, wagyu skewers, grilled seafood. Ten minutes from Capella on foot.' },
@@ -497,10 +501,12 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
       notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
       stops:[
-        { time:'09:00', title:'Shinkansen to Tokyo', sub:'Kyoto Station to Tokyo · Green Car', badge:'Logistics', badgeType:'logistics',
+        { time:'09:00', title:'Shinkansen to Tokyo', sub:'NOZOMI 80 · 09:01→11:15 · Green Car · Res# 2276', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
-          notes:'Nozomi service — arrive Tokyo approximately 10:15.' },
-        { time:'~13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
+          notes:'NOZOMI 80 · Kyoto 09:01 → Tokyo 11:15 · Series N700 · Green Car 10 · Seat 12-C and 12-D · 2 adults · Reservation: 2276 · Tap ticket links in emergency tab.',
+          ticket1:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=2200ph7yDilY00I6dLV2TW009KcGaC9T006qK32oaa00d9SmogFM00wa1FrzVQ00YdpxUIdJ00uQhtt46L00So3fXZzn00W4m',
+          ticket2:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=2200poMheHcN00mRVpcahn00LA0GDgu200vHnHdDkL00d9SmogFM00wa1FrzVQ00YdpxUIdJ00uQhtt46L00So3fXZvn00W4X' },
+        { time:'13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Menya Shichisai', addr:'Tokyo', q:'https://maps.google.com/?q=Menya+Shichisai+Tokyo',
           notes:'A celebrated ramen counter known for refined, deeply flavoured broth and house-made noodles. No reservations — arrive early.' },
@@ -688,6 +694,13 @@ function renderStop(stop,di,si){
     : '<span class="map-btn map-disabled" title="Available once confirmed">📍</span>'
       +'<span class="map-btn map-disabled" title="Available once confirmed">🧭</span>'
       +'<span class="map-btn map-disabled" title="Available once confirmed">&#10063;</span>';
+  var ticketHTML = '';
+  if (stop.ticket1 || stop.ticket2) {
+    ticketHTML = '<div class="ticket-btns">';
+    if (stop.ticket1) ticketHTML += '<a href="'+stop.ticket1+'" target="_blank" rel="noopener" class="ticket-btn">🎫 Ticket 1</a>';
+    if (stop.ticket2) ticketHTML += '<a href="'+stop.ticket2+'" target="_blank" rel="noopener" class="ticket-btn">🎫 Ticket 2</a>';
+    ticketHTML += '</div>';
+  }
   return '<div class="stop-item">'
     +'<div class="stop-time">'+(stop.time?stop.time.replace('~',''):'')+'</div>'
     +'<div class="stop-dot t-'+(isBday?'bday':stop.type)+'"></div>'
@@ -699,6 +712,7 @@ function renderStop(stop,di,si){
     +(stop.notes?'<div class="stop-notes">'+esc(stop.notes)+'</div>':'')
     +(stop.alert?'<div class="stop-alert">&#9888; '+esc(stop.alert)+'</div>':'')
     +'<div class="map-actions">'+mapHTML+'</div>'
+    +ticketHTML
     +'</div></div>';
 }
 
@@ -977,7 +991,7 @@ function renderEmergency(){
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">International Medical Clinic Tokyo</div><div class="contact-sub">English-speaking · Roppongi Hills</div></div></div><a href="tel:+81354121171" class="call-btn cb">📞 Call</a></div>'
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-b">🏥</div><div><div class="contact-label">Japan Baptist Hospital — Kyoto</div><div class="contact-sub">English-speaking · Kamigamo</div></div></div><a href="tel:+81757814141" class="call-btn cb">📞 Call</a></div>'
     +'</div>'
-    +'<div class="section-label">Useful Phrases</div>'
+    '<div class="section-label">Useful Phrases</div>'
     +'<div class="util-card"><ul class="info-list">'
     +'<li><span class="info-emoji">🙏</span><div class="info-text"><strong>Arigatou gozaimasu · ありがとうございます</strong>Thank you very much</div></li>'
     +'<li><span class="info-emoji">😊</span><div class="info-text"><strong>Sumimasen · すみません</strong>Excuse me / Sorry (most useful word in Japan)</div></li>'
