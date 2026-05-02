@@ -175,6 +175,9 @@ body{display:flex;flex-direction:column}
 .stop-badge.birthday{background:#F50057;color:#fff;border:none}
 /* logistics = soft amber for transport/hotel */
 .stop-badge.logistics{background:#FFE0B2;color:#BF360C;border:1px solid rgba(191,54,12,.18)}
+/* pending — warm amber (requested, to be confirmed) */
+.stop-badge.pending{background:#FFF3CD;color:#7A4F00;border:1px solid rgba(122,79,0,.25);font-style:italic}
+.bl-dot.pending{background:#FFE082;border:1px solid rgba(122,79,0,.25)}
 .stop-notes{font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-lt)}
 .ticket-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .ticket-btn{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;background:var(--navy);color:#fff;text-decoration:none;-webkit-tap-highlight-color:transparent}
@@ -362,10 +365,10 @@ var TRIP = {
     { name:'Aman Tokyo',    nights:'Fri 8 – Sat 9 May (2 nights)', q:'Aman Tokyo Otemachi' }
   ],
   days: [
-    /* ── D1 Sat 2 May ── */
+    /* ── D1 Saturday 2 May — TOKYO ── */
     {
       date:'2026-05-02', dayNum:1, weekday:'Saturday 2 May', city:'Tokyo',
-      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
+      hotel:'Janu Tokyo', hs:'jn', hq:'Janu Tokyo', bday:false,
       notes:'Arrival day. Pick-up handled by the hotel directly. Settle in — dinner tonight is the only commitment.',
       stops:[
         { time:'15:05', title:'Flight JL001 · Arrival HND', sub:'Japan Airlines · Haneda Airport',
@@ -379,25 +382,37 @@ var TRIP = {
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Restaurant', addr:'Tokyo', q:'Shinohara restaurant Tokyo',
           notes:'Yakitori Shinohara is a refined yakitori counter focused on precision grilling and a more elevated, course-driven approach to the category. The chef treats each skewer with exacting control over heat, timing, and seasoning, highlighting different cuts of chicken with clarity and balance. The experience unfolds as an omakase, moving beyond casual yakitori into a composed progression. Intimate and quietly sophisticated — a strong choice for guests seeking a more polished, chef-driven interpretation of traditional yakitori.' },
-        { time:'~15:00', title:'Free Afternoon', sub:'Nakameguro · Daikanyama · Ebisu',
-          type:'activity', loc:'Nakameguro', addr:'Nakameguro, Meguro City, Tokyo', q:'Nakameguro canal Tokyo',
-          notes:'The Meguro River walk toward Daikanyama is one of Tokyo’s most pleasant afternoon strolls. Daikanyama Tsutaya Books is world-class.' },
+      ]
+    },
+    /* ── D2 Sunday 3 May — TOKYO ── */
+    {
+      date:'2026-05-03', dayNum:2, weekday:'Sunday 3 May', city:'Tokyo',
+      hotel:'Janu Tokyo', hs:'jn', hq:'Janu Tokyo', bday:false,
+      notes:'Sumo stable in the morning, soba lunch, then Rangetsu for shabu-shabu.',
+      stops:[
+        { time:'08:30', title:'Sumo Stable Visit', sub:'Morning keiko practice · Requested — To Be Confirmed',
+          type:'activity', badge:'Requested — To Be Confirmed', badgeType:'pending',
+          loc:'Sumo Stable Tokyo', addr:'Tokyo', q:'sumo stable Tokyo keiko',
+          notes:'One of the rarest experiences available to outside guests in Japan. Watch the morning keiko (practice session) from close range. Strict protocols: no food, drink, or audio during keiko. Observe in silence. Duration approx 1h 45 min. Subject to confirmation.' },
+        { time:'~12:00', title:'Soba', sub:'Soba · Walk-in',
+          type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
+          loc:'Soba restaurant', addr:'Tokyo', q:'soba restaurant Tokyo',
+          notes:'A neighbourhood soba counter — buckwheat noodles served with exceptional simplicity. No reservation needed.' },
         { time:'17:00', title:'Spa Treatment', sub:'60 min couples massage · Female therapists',
           type:'spa', badge:'Confirmed · FF Group', badgeType:'confirmed',
-          loc:'Hotel Spa', addr:'Hotel', q:'Janu Tokyo spa',
+          loc:'Janu Tokyo Spa', addr:'Janu Tokyo, Azabudai Hills, Tokyo', q:'Janu Tokyo spa',
           notes:'Confirmed 60-minute couples massage, female therapists. Payable at checkout. Arrive 20 minutes prior. Cancellation: 24 hours prior. Booked by FF Group.' },
         { time:'19:30', title:'Rangetsu', sub:'Shabu-shabu & sukiyaki · 19:30',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Tokyo', addr:'Tokyo', q:'Rangetsu Tokyo restaurant Ginza',
-          notes:'Ginza Rangetsu is a long-established Tokyo institution specialising in sukiyaki and shabu-shabu, offering a classic and polished wagyu experience in the heart of Ginza. The setting is refined, with private rooms and attentive service suited for business or client dinners. The focus is on high-quality Japanese beef prepared in a traditional style. While not cutting-edge, it delivers a reliable, elegant introduction to Tokyo’s premium hotpot culture in a central, accessible location.',
-          alert:'No fragrance at the counter' }
+          loc:'Ginza Rangetsu', addr:'Ginza, Tokyo', q:'Rangetsu Tokyo restaurant Ginza',
+          notes:'Ginza Rangetsu is a long-established Tokyo institution specialising in sukiyaki and shabu-shabu, offering a classic and polished wagyu experience in the heart of Ginza. The setting is refined, with private rooms and attentive service suited for business or client dinners. The focus is on high-quality Japanese beef prepared in a traditional style. While not cutting-edge, it delivers a reliable, elegant introduction to Tokyo’s premium hotpot culture in a central, accessible location.' },
       ]
     },
-    /* ── D3 Mon 4 May ── */
+    /* ── D3 Monday 4 May — TOKYO ── */
     {
       date:'2026-05-04', dayNum:3, weekday:'Monday 4 May', city:'Tokyo',
-      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:false,
-      notes:'Golden Week (3–6 May). Parks and popular spots will be busy; all restaurants and private experiences remain unaffected.',
+      hotel:'Janu Tokyo', hs:'jn', hq:'Janu Tokyo', bday:false,
+      notes:'teamLab Borderless in the morning, pizza lunch, and sushi in the evening.',
       stops:[
         { time:'09:30', title:'teamLab Borderless', sub:'Immersive digital art · Azabudai Hills',
           type:'activity', badge:'Confirmed', badgeType:'confirmed',
@@ -413,15 +428,19 @@ var TRIP = {
         { time:'19:30', title:'Sushi Kaki', sub:'Sushi counter · 18:00',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Restaurant', addr:'Tokyo', q:'Sushi Kaki Tokyo',
-          notes:'Ningyocho Sushi Kaki offers an intimate Edomae sushi experience with just ~10 counter seats, delivering a highly focused and refined omakase. Chef Yoshiharu Kakinuma previously led Sushi Shikon to three Michelin stars and trained under the renowned Sushi Yoshitake lineage. This rare background brings a level of technical precision and international polish that is difficult to find in Tokyo — resulting in a calm, elegant, and deeply considered experience for guests seeking craftsmanship at the highest level.' }
+          notes:'Ningyocho Sushi Kaki offers an intimate Edomae sushi experience with just ~10 counter seats, delivering a highly focused and refined omakase. Chef Yoshiharu Kakinuma previously led Sushi Shikon to three Michelin stars and trained under the renowned Sushi Yoshitake lineage. This rare background brings a level of technical precision and international polish that is difficult to find in Tokyo — resulting in a calm, elegant, and deeply considered experience for guests seeking craftsmanship at the highest level.' },
       ]
     },
-    /* ── D4 Tue 5 May — BIRTHDAY ── */
+    /* ── D4 Tuesday 5 May — TOKYO ── */
     {
       date:'2026-05-05', dayNum:4, weekday:'Tuesday 5 May', city:'Tokyo',
-      hotel:'Janu Tokyo', hs:'', hq:'Janu Tokyo Azabudai Hills', bday:true,
-      notes:'Birthday! A spectacular day: the Joni Waka VIP fashion tour all day, followed by a special birthday dinner. Bar Centifolia to close the evening.',
+      hotel:'Janu Tokyo', hs:'jn', hq:'Janu Tokyo', bday:true,
+      notes:'Joni Waka VIP Fashion Tour, birthday teppanyaki dinner, and cocktails at Bar Centifolia.',
       stops:[
+        { time:'~10:00', title:'Tea Ceremony', sub:'Traditional tea ceremony · Requested',
+          type:'activity', badge:'Requested — To Be Confirmed', badgeType:'pending',
+          loc:'Tea Ceremony Tokyo', addr:'Tokyo', q:'traditional tea ceremony Tokyo',
+          notes:'A private traditional tea ceremony experience. Subject to confirmation and scheduling around the Joni Waka VIP Tour.' },
         { time:'10:00', title:'Joni Waka VIP Tour', sub:'Private · Full day · Hosted by Joni Waka',
           type:'activity', badge:'Confirmed', badgeType:'confirmed',
           loc:'Janu Tokyo lobby', addr:'Tokyo', q:'Janu Tokyo Azabudai Hills',
@@ -440,13 +459,13 @@ var TRIP = {
           notes:'Mon Cher Ton Ton is a classic Tokyo teppanyaki institution known for its theatrical yet refined approach to premium beef. Chefs cook in front of guests at polished iron counters, combining precise technique with a touch of showmanship. The focus is on high-quality wagyu sourced from top regions, alongside seafood and seasonal vegetables. A reliable, well-executed experience — more traditional and accessible than avant-garde, making it a comfortable entry into high-end teppanyaki dining in Tokyo.' },
         { time:'22:30', title:'Bar Centifolia', sub:'Birthday nightcap · One of Kyoto’s finest bars', badge:'Confirmed', badgeType:'confirmed',
           type:'bar', loc:'Bar', addr:'Tokyo', q:'Bar Centifolia Tokyo cocktail',
-          notes:'One of Tokyo’s most elusive and respected cocktail bars, known for its quiet, almost secretive atmosphere and deeply refined craft. The master behind the counter works with exceptional attention to detail, creating drinks that are subtle, layered, and perfectly executed. Seating is extremely limited, and access is often relationship-driven — making it less about menu choices and more about trust, timing, and being part of the room.' }
+          notes:'One of Tokyo’s most elusive and respected cocktail bars, known for its quiet, almost secretive atmosphere and deeply refined craft. The master behind the counter works with exceptional attention to detail, creating drinks that are subtle, layered, and perfectly executed. Seating is extremely limited, and access is often relationship-driven — making it less about menu choices and more about trust, timing, and being part of the room.' },
       ]
     },
-    /* ── D5 Wed 6 May — TO KYOTO ── */
+    /* ── D5 Wednesday 6 May — KYOTO ── */
     {
       date:'2026-05-06', dayNum:5, weekday:'Wednesday 6 May', city:'Kyoto',
-      hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
+      hotel:'Capella Kyoto', hs:'ck', hq:'Capella Kyoto', bday:false,
       notes:'Travel day. Shinkansen to Kyoto this morning — right-hand seats for Mount Fuji views. Settling into Capella Kyoto.',
       stops:[
         { time:'09:00', title:'Shinkansen to Kyoto', sub:'NOZOMI 135 · 09:00→11:15 · Green Car · Res# 2275',
@@ -467,13 +486,13 @@ var TRIP = {
         { time:'19:30', title:'Tempura Tenyuu', sub:'Counter tempura · 18:30 · Tawaraya group',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Kyoto', addr:'Kyoto', q:'Tempura Tenyuu Kyoto Tawaraya',
-          notes:'Tempura Tenyu is a refined tempura counter set within the legendary Ryokan Tenyu, a property known for its serene setting and traditional hospitality. The restaurant reflects this heritage — calm, precise, and deeply rooted in seasonality. The chef focuses on ultra-light batter and exact frying technique to highlight Kyoto vegetables and pristine seafood. The experience is elegant and restrained, offering guests not just excellent tempura, but a sense of place shaped by one of Kyoto’s most atmospheric ryokan environments.' }
+          notes:'Tempura Tenyu is a refined tempura counter set within the legendary Ryokan Tenyu, a property known for its serene setting and traditional hospitality. The restaurant reflects this heritage — calm, precise, and deeply rooted in seasonality. The chef focuses on ultra-light batter and exact frying technique to highlight Kyoto vegetables and pristine seafood. The experience is elegant and restrained, offering guests not just excellent tempura, but a sense of place shaped by one of Kyoto’s most atmospheric ryokan environments.' },
       ]
     },
-    /* ── D6 Thu 7 May — OKA ── */
+    /* ── D6 Thursday 7 May — KYOTO ── */
     {
       date:'2026-05-07', dayNum:6, weekday:'Thursday 7 May', city:'Kyoto',
-      hotel:'Capella Kyoto', hs:'ky', hq:'Capella Kyoto', bday:false,
+      hotel:'Capella Kyoto', hs:'ck', hq:'Capella Kyoto', bday:false,
       notes:'Full day with Ryan Durning — meet in the hotel lobby at Capella Kyoto. OKA dinner at 19:00 is the centrepiece of the evening.',
       stops:[
         { time:'09:00', title:'Tour with Ryan Durning', sub:'Kyoto or Nara · Tailored',
@@ -492,17 +511,15 @@ var TRIP = {
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Restaurant', addr:'Kyoto', q:'https://maps.app.goo.gl/nC5yg2TWXe2Jp4aR9',
           notes:'One of the top wagyu restaurants in Kyoto. The chef’s aged beef technique concentrates flavour in ways that surprise even experienced wagyu diners. Rarely seen at this level.',
-          alert:'No fragrance · 2 guests confirmed at 19:00 sharp' }
+          alert:'No fragrance · 2 guests confirmed at 19:00 sharp' },
       ]
     },
-    /* ── D7 Fri 8 May — BACK TO TOKYO ── */
+    /* ── D7 Friday 8 May — TOKYO ── */
     {
       date:'2026-05-08', dayNum:7, weekday:'Friday 8 May', city:'Tokyo',
-      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
+      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo', bday:false,
       notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
       stops:[
-
-        
         { time:'09:00', title:'Shinkansen to Tokyo', sub:'NOZOMI 80 · 09:01→11:15 · Green Car · Res# 2276', badge:'Confirmed', badgeType:'confirmed',
           type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
           notes:'NOZOMI 80 · Kyoto 09:01 → Tokyo 11:15 · Series N700 · Green Car 9 · Seat 6-C and 6-D · 2 adults · Reservation: 2276 (Smart EX)',
@@ -518,14 +535,14 @@ var TRIP = {
         { time:'19:30', title:'Sushi Nakano', sub:'Sushi counter · 20:30',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Tokyo', addr:'Tokyo', q:'Sushi Nakano Tokyo',
-          notes:'A discreet, high-end Edomae counter known for its calm, precision-driven approach to sushi. The experience is intimate, with a strong emphasis on balance between shari and neta. Chef Nakano focuses on clean flavours, careful aging, and exact temperature control rather than theatrics. The progression moves elegantly from otsumami into nigiri, showcasing seasonality and restraint — a refined, under-the-radar choice favoured by those who value technical consistency and a quietly confident style over showmanship.' }
+          notes:'A discreet, high-end Edomae counter known for its calm, precision-driven approach to sushi. The experience is intimate, with a strong emphasis on balance between shari and neta. Chef Nakano focuses on clean flavours, careful aging, and exact temperature control rather than theatrics. The progression moves elegantly from otsumami into nigiri, showcasing seasonality and restraint — a refined, under-the-radar choice favoured by those who value technical consistency and a quietly confident style over showmanship.' },
       ]
     },
-    /* ── D8 Sat 9 May — FISH MARKET ── */
+    /* ── D8 Saturday 9 May — TOKYO ── */
     {
       date:'2026-05-09', dayNum:8, weekday:'Saturday 9 May', city:'Tokyo',
-      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
-      notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
+      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo', bday:false,
+      notes:'Pre-dawn fish market, then Tsukiji for breakfast. Final evening: wagashi tasting, spa, and WAGYUMAFIA.',
       stops:[
         { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World’s largest fish market',
           type:'market', badge:'Confirmed', badgeType:'confirmed',
@@ -550,56 +567,29 @@ var TRIP = {
         { time:'19:00', title:'WAGYUMAFIA', sub:'Wagyu omakase · 19:00 · 2 guests',
           type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
           loc:'Tokyo', addr:'Tokyo', q:'WAGYUMAFIA Tokyo wagyu',
-          notes:'A highly exclusive, membership-based dining concept centred around premium Japanese wagyu. Known for its bold, modern style, blending yakiniku, steakhouse, and tasting-menu elements with a strong brand identity. Signature experiences include rare cuts, playful presentations, and the famous wagyu katsu sando. Access is typically restricted to members or invited guests, and the atmosphere is energetic and social rather than traditional — about indulgence, rarity, and being part of a global culinary community.' }
+          notes:'A highly exclusive, membership-based dining concept centred around premium Japanese wagyu. Known for its bold, modern style, blending yakiniku, steakhouse, and tasting-menu elements with a strong brand identity. Signature experiences include rare cuts, playful presentations, and the famous wagyu katsu sando. Access is typically restricted to members or invited guests, and the atmosphere is energetic and social rather than traditional — about indulgence, rarity, and being part of a global culinary community.' },
       ]
     },
-    /* ── D9 Sun 10 May — DEPARTURE ── */
-    {
-      date:'2026-05-09', dayNum:8, weekday:'Saturday 9 May', city:'Tokyo',
-      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo Otemachi', bday:false,
-      notes:'Pre-dawn fish market, then Tsukiji for breakfast. Wear comfortable closed shoes. Final night in Japan.',
-      stops:[
-        { time:'06:00', title:'Toyosu Fish Market', sub:'Dawn expedition · World’s largest fish market',
-          type:'market', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
-          notes:'The largest fish market in the world. Visit the top tuna intermediate wholesalers — one of Japan’s most fascinating food environments. The market is at its most alive between 06:00 and 08:00.',
-          alert:'Comfortable closed shoes required · Follow your guide at all times' },
-        { time:'~09:30', title:'Tsukiji Outer Market', sub:'Breakfast and street food', badge:'Walk-in', badgeType:'walk-in',
-          type:'market', loc:'Tsukiji Outer Market', addr:'4-16-2 Tsukiji, Chuo City, Tokyo', q:'https://maps.google.com/?q=Tsukiji+Outer+Market+Tokyo',
-          notes:'A short drive from Toyosu. Tamagoyaki, fresh sushi, grilled seafood. An excellent post-market breakfast stop.' },
-        { time:'~11:00', title:'Free Morning', sub:'Ginza · Hibiya · Rest at Aman',
-          type:'activity', loc:'Ginza, Tokyo', addr:'Ginza, Chuo City, Tokyo', q:'Ginza Tokyo',
-          notes:'Ginza and Hibiya Park are adjacent to Aman Tokyo. The Aman Spa is worth booking in advance for this afternoon.' },
-        { time:'15:30', title:'Kukuku Wagashi Counter', sub:'Wagashi tasting · Confirmed',
-          type:'activity', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Kukuku Wagashi Counter Tokyo', addr:'Tokyo', q:'https://maps.app.goo.gl/ioMGTE3eZtetsvtLA',
-          notes:'A confirmed wagashi (traditional Japanese confectionery) tasting experience before departure. A beautiful final taste of Japan.' },
-        { time:'17:00', title:'Spa Treatment', sub:'60 min couples massage · Hydro-facility from 16:00',
-          type:'spa', badge:'Confirmed · FF Group', badgeType:'confirmed',
-          loc:'Aman Tokyo Spa', addr:'Aman Tokyo', q:'Aman Tokyo spa',
-          notes:'Confirmed 60-minute couples massage, female therapists. The spa recommends arriving at 16:00 to enjoy the hydro-facility before your treatment. Payable at checkout. Cancellation: 24 hours prior. Booked by FF Group.',
-          alert:'Note: Wagashi Counter at 15:30 ends approx 16:30 — tight for 16:00 hydro arrival. Coordinate with FF Group.' },
-        { time:'19:00', title:'WAGYUMAFIA', sub:'Wagyu omakase · 19:00 · 2 guests',
-          type:'restaurant', badge:'Confirmed', badgeType:'confirmed',
-          loc:'Tokyo', addr:'Tokyo', q:'WAGYUMAFIA Tokyo wagyu',
-          notes:'A highly exclusive, membership-based dining concept centred around premium Japanese wagyu. Known for its bold, modern style, blending yakiniku, steakhouse, and tasting-menu elements with a strong brand identity. Signature experiences include rare cuts, playful presentations, and the famous wagyu katsu sando. Access is typically restricted to members or invited guests, and the atmosphere is energetic and social rather than traditional — about indulgence, rarity, and being part of a global culinary community.' }
-      ]
-    },
-    /* ── D9 Sun 10 May — DEPARTURE ── */
+    /* ── D9 Sunday 10 May — TOKYO ── */
     {
       date:'2026-05-10', dayNum:9, weekday:'Sunday 10 May', city:'Tokyo',
-      hotel:null, hs:'', hq:null, bday:false,
-      notes:'Departure day. Luggage can be stored at Aman until your transfer. Kukuku for a final farewell lunch.',
+      hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo', bday:false,
+      notes:'Farewell lunch before heading to Haneda. Flight departs 16:20.',
       stops:[
-        { time:'~11:00', title:'Lunch', sub:'Happy Camper will confirm details closer to travel', badge:'Happy Camper Selection', badgeType:'tbd',
-          type:'restaurant', loc:'Kukuku', addr:'Tokyo', q:'Tokyo',
-          notes:'We are currently selecting a farewell lunch. Full details will be shared once confirmed.' },
+        { time:'~12:00', title:'Lunch', sub:'Soba · Walk-in',
+          type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
+          loc:'Soba restaurant', addr:'Tokyo', q:'soba restaurant Tokyo',
+          notes:'A neighbourhood soba counter — buckwheat noodles served with exceptional simplicity. No reservation needed.' },
         { time:'13:45', title:'Departure Transfer', sub:'Transfer 13:45 · JL002 departs 16:20 · FF Group', badge:'Logistics', badgeType:'logistics',
           type:'transport', loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
-          notes:'Depart Aman Tokyo at 13:45. Meet driver in front of the hotel — if you cannot locate them, speak with the front desk. Transfer approx 30–45 min to HND payable at checkout · Flight JL002 departs 16:20. Booked by FF Group.' }
+          notes:'Depart Aman Tokyo at 13:45. Meet driver in front of the hotel — if you cannot locate them, speak with the front desk. Transfer approx 30–45 min to HND payable at checkout · Flight JL002 departs 16:20. Booked by FF Group.' },
+        { time:'16:20', title:'Flight JL002 · Departure HND', sub:'Japan Airlines · Haneda Airport',
+          type:'flight', badge:'Confirmed · FF Group', badgeType:'confirmed',
+          loc:'Haneda Airport Tokyo', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo HND',
+          notes:'Japan Airlines JL002 departs 16:20 from Haneda. Confirmed by FF Group.' },
       ]
     }
-  ]
+  ] // end days
 };
 
 /* ── WEATHER ────────────────────────────────────────────────── */
@@ -772,6 +762,8 @@ function renderItinerary(){
     +'<span class="bl-item"><span class="bl-dot requested"></span>Requested</span>'
     +'<span class="bl-item"><span class="bl-dot walk-in"></span>Walk-in</span>'
     +'<span class="bl-item"><span class="bl-dot tbd"></span>Happy Camper Selection</span>'
+    +'<span class="bl-item"><span class="bl-dot pending"></span><em>Requested — To Be Confirmed</em></span>'
+    +'<span class="bl-item"><span class="bl-dot pending"></span><em>Requested — To Be Confirmed</em></span>'
     +'<span class="bl-item"><span class="bl-dot birthday"></span>Birthday</span>'
     +'</div>'
     +'<div class="section-label">Daily Itinerary</div>';
@@ -879,7 +871,6 @@ function renderUtilities(){
   fJ();
 }
 
-/* ── RENDER EMERGENCY ────────────────────────────────────────── */
 var IDEAS = [
   {
     emoji: '🏎️',
@@ -889,10 +880,6 @@ var IDEAS = [
     status: 'Exploring',
     desc: 'Street legal go-karts dressed as Mario characters through central Kyoto. Wind through the streets in costume — past temples and along the Kamo River. One of the most surreal and fun experiences Japan offers. Requires an international driving permit.'
   },
-        { time:'16:20', title:'Flight JL002 · Departure HND', sub:'Japan Airlines · Haneda Airport',
-          type:'flight', badge:'Confirmed · FF Group', badgeType:'confirmed',
-          loc:'Haneda Airport Tokyo', addr:'Haneda Airport, Ota City, Tokyo', q:'Haneda Airport Tokyo HND',
-          notes:'Japan Airlines JL002 departs 16:20 from Haneda. Confirmed by FF Group.' },
   {
     emoji: '🏯',
     title: 'Sumo Stable Visit',
@@ -1072,8 +1059,7 @@ if(document.readyState==='loading'){
   init();
 }
 
-}());
-</script>
+}());</script>
 
 </body>
 </html>
