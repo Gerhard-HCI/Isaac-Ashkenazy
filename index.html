@@ -536,11 +536,11 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo', bday:false,
       notes:'Shinkansen back to Tokyo this morning. Settling into Aman Tokyo — one of the great hotel addresses in Japan.',
       stops:[
-        { time:'08:30', title:'Shinkansen to Tokyo', sub:'NOZOMI 78 · 08:30→10:45 · Green Car 9 · Seats 4-C/D · Res# 2276', badge:'Confirmed', badgeType:'confirmed',
+        { time:'09:01', title:'Shinkansen to Tokyo', sub:'NOZOMI 80 · 09:01→11:15 · Green Car 9 · Seats 7-A/B · Res# 2276', badge:'Confirmed', badgeType:'confirmed',
           type:'transport', loc:'Kyoto Station', addr:'Karasuma-dori, Shimogyo Ward, Kyoto', q:'Kyoto Station',
-          notes:'NOZOMI 78 · Depart Kyoto 08:30 → Arrive Tokyo 10:45 · Series N700 (16 cars) · Green Car 9 · Seats 4-C and 4-D · 2 adults · Reservation: 2276 (Smart EX) · QR tickets below.',
-          ticket1:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=3400QNixHlUR00ZQTuDzKM00WCkfd9vA00WhqOG1OM00OwWIcrKW00UXdG3PNt00t4ocqy3u00XRFnWgGU00AU10rRvQ00Ydk',
-          ticket2:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=3400QEr99IND00FQCd4qA3002t3aiZSJ00Wgu0zkM500OwWIcrKW00UXdG3PNt00t4ocqy3u00XRFnWgGU00AU10rRaQ00YdS' },
+          notes:'NOZOMI 80 · Depart Kyoto 09:01 → Arrive Tokyo 11:15 · Series N700 (16 cars) · Green Car 9 · Seats 7-A and 7-B · 2 adults · Reservation: 2276 (Smart EX) · QR tickets below.',
+          ticket1:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=3900N012gjdn00Ovmqgjb200NfG0wFza00RF5rWvGQ002K6NHdku00Qutk4M3q00wRtmZAnL004G9wR12X003VQXrxtU00Iil',
+          ticket2:'https://shinkansen2.jr-central.co.jp/RSV_P/ClientServiceQR-Ticket?_encParam=3900NxFIPmLs002vlWztpM00PRnObHUs00R1YLRWyk002K6NHdku00Qutk4M3q00wRtmZAnL004G9wR12X003VQXrxJU00Iiz' },
         { time:'13:00', title:'Menya Shichisai', sub:'Lunch · Celebrated ramen counter',
           type:'restaurant', badge:'Walk-in', badgeType:'walk-in',
           loc:'Menya Shichisai', addr:'Tokyo', q:'https://maps.google.com/?q=Menya+Shichisai+Tokyo',
@@ -566,6 +566,11 @@ var TRIP = {
       hotel:'Aman Tokyo', hs:'am', hq:'Aman Tokyo', bday:false,
       notes:'Pre-dawn fish market, then Tsukiji for breakfast. Final evening: wagashi tasting, spa, and WAGYUMAFIA.',
       stops:[
+        { time:'07:00', title:'Guided Day with Iko Tamura', sub:'Private guide · Meet at Aman Tokyo lobby',
+          type:'activity', badge:'Confirmed', badgeType:'confirmed',
+          loc:'Aman Tokyo', addr:'1-5-6 Otemachi, Chiyoda City, Tokyo', q:'Aman Tokyo Otemachi',
+          notes:'Your guide for today is Ikuko Tamura (Iko) — a Tokyo-based hospitality professional with rare breadth. A former Emirates First Class cabin crew member for ten years, followed by roles as VIP concierge and private guide for overseas visitors to Japan. Bilingual in English and Japanese, trained in omotenashi, and deeply knowledgeable about Tokyo. Iko will meet you in the Aman Tokyo lobby at 07:00.',
+          alert:'Meet Iko in the Aman Tokyo lobby at 07:00 · +81 80 3427 0884' },
         { time:'07:15', title:'Toyosu Fish Market', sub:'Dawn expedition · World’s largest fish market',
           type:'market', badge:'Confirmed', badgeType:'confirmed',
           loc:'Toyosu Fish Market', addr:'6-6-1 Toyosu, Koto City, Tokyo', q:'Toyosu Fish Market Tokyo',
@@ -1015,6 +1020,7 @@ function renderEmergency(){
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🌿</div><div><div class="contact-label">Happy Camper Assistance</div><div class="contact-sub">24/7 trip support line</div></div></div><a href="tel:+819061589006" class="call-btn cn">📞 Call</a></div>'
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🚗</div><div><div class="contact-label">Shun Ishihara — Tokyo Driver</div><div class="contact-sub">Private driver · Tokyo leg · May 2–6 & 8–10</div></div></div><a href="tel:+818059836150" class="call-btn cn">📞 Call</a></div>'
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">👘</div><div><div class="contact-label">Joni Waka — Tokyo Fashion Tour</div><div class="contact-sub">Tue 5 May · Janu Tokyo lobby</div></div></div><a href="tel:+818099821000" class="call-btn cn">📞 Call</a></div>'
+    +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">🌸</div><div><div class="contact-label">Iko Tamura — Tokyo Guide</div><div class="contact-sub">Sat 9 May · Aman Tokyo lobby 07:00</div></div></div><a href="tel:+818034270884" class="call-btn cn">📞 Call</a></div>'
     +'<div class="contact-row"><div class="contact-left"><div class="contact-icon ci-n">⛩️</div><div><div class="contact-label">Ryan Durning — Kyoto Guide</div><div class="contact-sub">Private guide · Wed 6 – Thu 7 May</div></div></div><span class="call-btn co">WhatsApp</span></div>'
     +'</div>'
     +'<div class="section-label">Hotels</div>'
